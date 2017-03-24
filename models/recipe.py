@@ -12,14 +12,12 @@ class Recipe(Base):
     name = Column(String(80), nullable=False)
     id = Column(Integer, primary_key=True)
     description = Column(String(250))
+    image = Column(String(250))
 
     category_id = Column(Integer, ForeignKey('category.id'))
     category = relationship(Category)
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
-
-    insert_date = Column(DateTime(timezone=True), default=func.now())
-    last_update = Column(DateTime(timezone=True), default=func.now())
 
     @property
     def serialize(self):
@@ -27,7 +25,6 @@ class Recipe(Base):
         return {
             'name': self.name,
             'description': self.description,
-            'id'         : self.id,
-            'insert_date': self.insert_date,
-            'last_update': self.last_update
+            'image': self.image,
+            'id': self.id,
         }

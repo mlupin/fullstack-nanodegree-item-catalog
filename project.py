@@ -37,9 +37,9 @@ def showLogin():
 
 # Show all recipes
 @app.route('/')
-@app.route('/recipes/')
 def showCategories():
-    return render_template('categories.html')
+    categories = session.query(Category).order_by(asc(Category.name))
+    return render_template('categories.html', categories=categories)
 
 
 # Create a new category
@@ -60,33 +60,40 @@ def deleteCategory():
     return render_template('deleteCategory.html')
 
 
+# Show all recipes
+@app.route('/recipes/')
+def showAllRecipes():
+    recipes = session.query(Recipe).order_by(asc(Recipe.name))
+    return render_template('recipes.html', recipes=recipes)
+
+
 # Show recipes in a category
 @app.route('/recipes/<int:category_id>')
-def showCatalog():
+def showRecipes():
     return render_template('recipes.html')
 
 
 # Show a recipe
-@app.route('/recipes/<int:recipe_id>/')
-def showCatalogItem():
+@app.route('/recipes/<int:category_id>/<int:recipe_id>/<int:recipe_title>')
+def showRecipe():
     return render_template('recipe.html')
 
 
 # Create a new recipe
-@app.route('/recipes/new/')
-def newCatalogItem():
+@app.route('/recipe/new/')
+def newRecipe():
     return render_template('newRecipe.html')
 
 
 # Edit a recipe
-@app.route('/recipes/<int:category_id>/<int:recipe_id>/edit/')
-def editCatalogItem():
+@app.route('/recipes/<int:category_id>/<int:recipe_id>/<int:recipe_name>/edit/')
+def editRecipe():
     return render_template('editRecipe.html')
 
 
 # Delete a recipe
-@app.route('/recipes/<int:category_id>/<int:recipe_id>/delete/')
-def deleteCatalogItem():
+@app.route('/recipes/<int:category_id>/<int:recipe_id>/<int:recipe_name>/delete/')
+def deleteRecipe():
     return render_template('deleteRecipe.html')
 
 

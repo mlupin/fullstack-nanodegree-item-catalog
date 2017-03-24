@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine, DateTime
 from sqlalchemy.orm import sessionmaker
-from models import Base, Category
+from models.base import Base
+from models.category import Category
 
 
 engine = create_engine('sqlite:///recipes.db')
@@ -15,7 +16,7 @@ categories = ['Wraps & Burgers',
               'Sides & Salads',
               'Soups & Stews',
               'Pasta & Noodles',
-              'Amazing Grains'
+              'Amazing Grains',
               'Breakfast',
               'Condiments & Sauces',
               'Decadent Desserts']
