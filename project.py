@@ -81,7 +81,7 @@ def showRecipes():
 
 
 # Show a recipe
-@app.route('/recipes/<int:category_id>/<int:recipe_id>/<int:recipe_title>')
+@app.route('/recipes/<int:recipe_id>/<int:recipe_name>')
 def showRecipe():
     return render_template('recipe.html')
 
