@@ -87,9 +87,23 @@ def showRecipe():
 
 
 # Create a new recipe
-@app.route('/recipe/new/')
+@app.route('/recipe/new/', methods=['GET', 'POST'])
 def newRecipe():
-    return render_template('newRecipe.html')
+    if request.method == 'POST':
+        if request.form['name'] != "" and request.form['description'] != "" and request.form['category'] != "":
+            createNewRecipe = Recipe(name=request.form['name'],
+                                     description=request.form['description'],
+                                     category_id=request.form['category']
+                                     )
+            session.add(createNewRecipe)
+            session.commit()
+            flash('New Recipe %s Successfully Created' % (createNewRecipe.name))
+            return redirect(url_for('showAllRecipes'))
+        else: 
+            flash('Error')
+            return render_template('newRecipe.html')
+    else:
+        return render_template('newRecipe.html')
 
 
 # Edit a recipe
