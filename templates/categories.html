@@ -14,10 +14,7 @@
 		<div class="col-md-1"></div>
 		<div class="col-md-11 padding-none">
 			<h1>Categories</h1>
-		</div>
-	</div>
 
-	<div class = 'flash'>
 		{% with messages = get_flashed_messages() %}
 	      {% if messages %}    
 	        <ul>
@@ -33,9 +30,9 @@
 	<div class="row padding-top padding-bottom">
 		<div class="col-md-1"></div>
 		<div class="col-md-10 padding-none">
-			<a href="{{url_for('newCategory')}}">
+			<a href="{{url_for('newRecipe')}}">
 				<button class="btn btn-default" id="new-restaurant">
-					<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>Add Category
+					<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>Add Recipe
 				</button>
 			</a>
 		</div>

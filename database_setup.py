@@ -1,8 +1,8 @@
 from sqlalchemy import create_engine, DateTime
 from sqlalchemy.orm import sessionmaker
-from models.base import Base
-from models.category import Category
-
+# from models.base import Base
+# from models.category import Category
+from models.models import Base, User, Category, Recipe
 
 engine = create_engine('sqlite:///recipes.db')
 # Bind the engine to the metadata of the Base class so that the

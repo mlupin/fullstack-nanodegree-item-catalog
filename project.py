@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, redirect, jsonify, url_for, flash
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
-from models.base import Base
-from models.user import User
-from models.category import Category
-from models.recipe import Recipe
+# from models.base import Base
+# from models.user import User
+# from models.category import Category
+# from models.recipe import Recipe
+from models.models import Base, User, Category, Recipe
 from flask import session as login_session
 import random
 import string
@@ -42,22 +43,28 @@ def showCategories():
     return render_template('categories.html', categories=categories)
 
 
-# Create a new category
-@app.route('/recipes/new/')
-def newCategory():
-    return render_template('newCategory.html')
+# # Create a new category
+# @app.route('/recipes/new/', methods=['GET','POST'])
+# def newCategory():
+#     if request.method == 'POST':
+#         newCategory = Category(name=request.form['name'])
+#         flash('New Category %s Successfully Created' % newCategory.name)
+#         session.commit()
+#         return redirect(url_for('showCategories'))
+#     else:
+#         return render_template('newCategory.html')
 
 
-# Edit a category
-@app.route('/recipes/<int:category_id>/edit/')
-def editCategory():
-    return render_template('editCategory.html')
+# # Edit a category
+# @app.route('/recipes/<int:category_id>/edit/')
+# def editCategory():
+#     return render_template('editCategory.html')
 
 
-# Delete a category
-@app.route('/recipes/<int:category_id>/delete/')
-def deleteCategory():
-    return render_template('deleteCategory.html')
+# # Delete a category
+# @app.route('/recipes/<int:category_id>/delete/')
+# def deleteCategory():
+#     return render_template('deleteCategory.html')
 
 
 # Show all recipes
