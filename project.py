@@ -107,7 +107,7 @@ def newRecipe():
 
 
 # Edit a recipe
-@app.route('/recipes/<int:category_id>/<int:recipe_id>/<string:recipe_name>/edit/')
+@app.route('/recipes/<int:recipe_id>/edit/')
 def editRecipe():
     return render_template('editRecipe.html')
 
@@ -115,14 +115,14 @@ def editRecipe():
 # Delete a recipe
 @app.route('/recipes/<int:recipe_id>/delete/', methods=['GET','POST'])
 def deleteRecipe(recipe_id):
+    recipeToDelete = session.query(Recipe).filter_by(id=recipe_id).one()
     if request.method == 'POST':
-        recipeToDelete = session.query(Recipe).filter_by(id=recipe_id).one()
         session.delete(recipeToDelete)
         session.commit()
         flash('Recipe Successfully Deleted')
         return redirect(url_for('showAllRecipes'))
     else:
-        return redirect(url_for('showAllRecipes'))
+        return render_template('deleteRecipe.html', recipe=recipeToDelete)
 
 
 if __name__ == '__main__':
