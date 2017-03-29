@@ -46,7 +46,7 @@
 						<p>{{recipe.description}}</p>
 						<a href="#">Link to edit recipe
 						</a> | 
-						<a href="#">Link to delete recipe
+						<a href="{{url_for('deleteRecipe', recipe_id=recipe.id)}}">Delete recipe
 						</a>
 					</div>
 				<div class="col-md-1"></div>
