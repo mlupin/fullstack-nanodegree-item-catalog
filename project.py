@@ -31,6 +31,7 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
+
 @app.route('/login')
 def showLogin():
     return render_template('login.html')
@@ -81,9 +82,10 @@ def showRecipes():
 
 
 # Show a recipe
-@app.route('/recipes/<int:recipe_id>/<string:recipe_name>')
-def showRecipe():
-    return render_template('recipe.html')
+@app.route('/recipes/<int:recipe_id>/')
+def showRecipe(recipe_id):
+    recipeToShow = session.query(Recipe).filter_by(id=recipe_id).one()
+    return render_template('recipe.html', recipe=recipeToShow)
 
 
 # Create a new recipe
