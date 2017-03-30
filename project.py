@@ -77,8 +77,9 @@ def showAllRecipes():
 
 # Show recipes in a category
 @app.route('/recipes/<int:category_id>')
-def showRecipes():
-    return render_template('recipes.html')
+def showRecipes(category_id):
+    recipes = session.query(Recipe).filter_by(category_id=category_id).order_by(asc(Recipe.name))
+    return render_template('recipes.html', recipes=recipes)
 
 
 # Show a recipe
