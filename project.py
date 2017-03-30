@@ -37,8 +37,34 @@ def showLogin():
     return render_template('login.html')
 
 
+
+#JSON APIs to view Restaurant Information
+@app.route('/categories/<int:category_id>/recipes/JSON')
+def categoryRecipesJSON(category_id):
+    recipes = session.query(Recipe).filter_by(category_id=category_id).order_by(asc(Recipe.name))
+    return jsonify(recipes=[r.serialize for r in recipes])
+
+
+@app.route('/recipes/<int:recipe_id>/JSON')
+def recipeJSON(recipe_id):
+    recipe = session.query(Recipe).filter_by(id=recipe_id).one()
+    return jsonify(recipe=recipe.serialize)
+
+@app.route('/recipes/JSON')
+def recipesJSON():
+    recipes = session.query(Recipe).order_by(asc(Recipe.name))
+    return jsonify(recipes=[r.serialize for r in recipes])
+
+@app.route('/categories/JSON')
+def categoriesJSON():
+    categories = session.query(Category).all()
+    return jsonify(categories=[c.serialize for c in categories])
+
+
+
 # Show all recipes
 @app.route('/')
+@app.route('/categories/')
 def showCategories():
     categories = session.query(Category).order_by(asc(Category.name))
     return render_template('categories.html', categories=categories)
@@ -76,7 +102,7 @@ def showAllRecipes():
 
 
 # Show recipes in a category
-@app.route('/recipes/<int:category_id>')
+@app.route('/categories/<int:category_id>/recipes')
 def showRecipes(category_id):
     recipes = session.query(Recipe).filter_by(category_id=category_id).order_by(asc(Recipe.name))
     return render_template('recipes.html', recipes=recipes)
