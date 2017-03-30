@@ -1,5 +1,120 @@
 {% extends "main.html" %}
 {% block content %}
 {% include "header.html" %}
-	-Edit a catalog item.
+	<div class="row divider green">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner menu">
+		<div class="col-md-11 col-md-offset-1 padding-none">
+			<h1>Edit Menu Item</h1>
+		</div>
+	</div>
+	
+	<div class = 'flash'>
+      	{% with messages = get_flashed_messages() %}
+	  		{% if messages %}
+		   		<ul>
+		    		{% for message in messages %}
+		        	<li> <strong> {{ message }} </strong> </li>
+		    		{% endfor %}
+		    	</ul>
+	    	{% endif %}
+		{% endwith %}
+
+	</div>
+
+	<div class="row">
+		<div class="col-md-6 col-md-offset-1 padding-top">
+			<form action="#" method = "post">
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<input type ="text" maxlength="100" class="form-control" name="name" value="{{recipe.name }}">
+
+					<label for="description">Description:</label>
+					<textarea class="form-control" maxlength="250" rows="3" name="description">{{recipe.description}}</textarea>
+
+					
+					<label for="category">Category:</label>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="category" value="1"
+					    	{% if recipe.category_id == 1 %}
+					    		checked
+					    	{%endif%}
+					 	>Wraps &amp; Burgers
+					  </label>
+					</div>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="category" value="2"
+					    	{% if recipe.category_id == 2 %}
+					    		checked
+					    	{%endif%}
+					 	>Sides &amp; Salads
+					  </label>
+					</div>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="category" value="3"
+					    	{% if recipe.category_id == 3 %}
+					    		checked
+					    	{%endif%}
+					 	>Soups &amp; Stews
+					  </label>
+					</div>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="category" value="4"				{% if recipe.category_id == 4 %}
+					    		checked
+					    	{%endif%}
+					    >Pasta &amp; Noodles
+					  </label>
+					</div>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="category" value="5"
+					    	{% if recipe.category_id == 5 %}
+					    		checked
+					    	{%endif%}
+					    >Amazing Grains
+					  </label>
+					</div>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="category" value="6"
+					    	{% if recipe.category_id == 6 %}
+					    		checked
+					    	{%endif%}
+					    >Breakfast
+					  </label>
+					</div>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="category" value="7"
+					    	{% if recipe.category_id == 7 %}
+					    		checked
+					    	{%endif%}
+					    >Condiments &amp; Sauces
+					  </label>
+					</div>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="category" value="8"
+					    	{% if recipe.category_id == 8 %}
+					    		checked
+					    	{%endif%}
+					    >Decadent Desserts
+					  </label>
+					</div>
+
+					<button type="submit" class="btn btn-default" id="submit" type="submit">
+					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Save</button>
+					<a href = '{{url_for('showAllRecipes')}}'>
+						<button class="btn btn-default delete">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
+					</a>
+				</div>
+			</form>
+		</div>
+	</div>
 {% endblock %}

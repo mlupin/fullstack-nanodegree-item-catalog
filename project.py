@@ -107,9 +107,26 @@ def newRecipe():
 
 
 # Edit a recipe
-@app.route('/recipes/<int:recipe_id>/edit/')
-def editRecipe():
-    return render_template('editRecipe.html')
+@app.route('/recipes/<int:recipe_id>/edit/', methods=['GET','POST'])
+def editRecipe(recipe_id):
+    editedRecipe = session.query(Recipe).filter_by(id=recipe_id).one()
+    if request.method == 'POST':
+        if request.form['name'] != "" and request.form['description'] != "" and request.form['category'] != "":
+            if request.form['name']:
+                editedRecipe.name = request.form['name']
+            if request.form['description']:
+                editedRecipe.description = request.form['description']
+            if request.form['category']:
+                editedRecipe.category_id = request.form['category']
+            session.add(editedRecipe)
+            session.commit()
+            flash('Recipe %s Successfully Edited' % editedRecipe.name)
+            return redirect(url_for('showAllRecipes'))
+        else:
+            flash('Name and Description cannot be blank')
+            return render_template('editRecipe.html', recipe=editedRecipe)
+    else:
+        return render_template('editRecipe.html', recipe=editedRecipe)
 
 
 # Delete a recipe
