@@ -15,12 +15,12 @@ session = dbSession()
 # Create dummy user
 user1 = User(name="Marina Lupin",
              email="lupinmarina@gmail.com",
-             image='https://pbs.twimg.com/profile_images/2671170543'
+             picture='https://pbs.twimg.com/profile_pictures/2671170543'
                    '/18debd694829ed78203a5a36dd364160_400x400.png')
 
 user2 = User(name="Archer",
              email="archer@example.com",
-             image='https://pbs.twimg.com/profile_images/2671170543'
+             picture='https://pbs.twimg.com/profile_pictures/2671170543'
                    '/18debd694829ed78203a5a36dd364160_400x400.png')
 
 users = [user1, user2]
@@ -41,33 +41,33 @@ categories = [category1, category2, category3, category4,
 recipe1 = Recipe(user_id=1,
                  name="Veggie Burger",
                  description="Juicy grilled veggie patty with tomato mayo and lettuce",
-                 image="http://lorempixel.com/200/200/food",
+                 picture="http://lorempixel.com/200/200/food",
                  category=category1)
 
 recipe2 = Recipe(user_id=1,
                  name="Veggie Wrap",
                  description="Juicy grilled tofu with guac and lettuce",
-                 image="http://lorempixel.com/200/200/food",
+                 picture="http://lorempixel.com/200/200/food",
                  category=category1)
 
 # Breakfast recipes
 recipe3 = Recipe(user_id=1,
                  name="Chia Seed Pudding",
                  description="Pudding made with almond milk, chia seeds, cardamom, and blueberries",
-                 image="http://lorempixel.com/200/200/food",
+                 picture="http://lorempixel.com/200/200/food",
                  category=category6)
 
 
 recipe4 = Recipe(user_id=1,
                  name="Chocolate Banana Smoothie",
                  description="Banana blended with flax seeds and cocao powder",
-                 image="http://lorempixel.com/200/200/food",
+                 picture="http://lorempixel.com/200/200/food",
                  category=category6)
 
 recipe5 = Recipe(user_id=1,
                  name="Avocado Lime Tart",
                  description="Raw vegan avocado key lime pie with a nut and date crust",
-                 image="http://lorempixel.com/200/200/food",
+                 picture="http://lorempixel.com/200/200/food",
                  category=category8)
 
 
