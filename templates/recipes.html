@@ -46,6 +46,8 @@
 							<h3>{{recipe.name}}</h3>
 						</a>
 						
+						<h6>Category: {{recipe.category.name}}</h6>
+						<h6>Author: {{recipe.user.name}}</h6>
 						<p>{{recipe.description}}</p>
 						<a href="{{url_for('editRecipe', recipe_id=recipe.id)}}">Edit recipe
 						</a> | 

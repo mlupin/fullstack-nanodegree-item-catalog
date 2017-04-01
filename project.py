@@ -19,6 +19,7 @@ import requests
 
 app = Flask(__name__)
 
+
 CLIENT_ID = json.loads(
     open('client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Item Catalog Recipe App"
@@ -200,7 +201,6 @@ def categoriesJSON():
     return jsonify(categories=[c.serialize for c in categories])
 
 
-
 # Show all recipes
 @app.route('/')
 @app.route('/categories/')
@@ -233,6 +233,8 @@ def showRecipe(recipe_id):
 # Create a new recipe
 @app.route('/recipe/new/', methods=['GET', 'POST'])
 def newRecipe():
+    if 'username' not in login_session:
+        return redirect('/login')
     if request.method == 'POST':
         if request.form['name'] != "" and request.form['description'] != "" and request.form['category'] != "":
             createNewRecipe = Recipe(name=request.form['name'],
@@ -253,30 +255,40 @@ def newRecipe():
 # Edit a recipe
 @app.route('/recipes/<int:recipe_id>/edit/', methods=['GET','POST'])
 def editRecipe(recipe_id):
-    editedRecipe = session.query(Recipe).filter_by(id=recipe_id).one()
+    recipeToEdit = session.query(Recipe).filter_by(id=recipe_id).one()
+    if 'username' not in login_session:
+        return redirect('/login')
+    if recipeToEdit.user_id != login_session['user_id']:
+        flash('You are not authorized to edit %s recipe' % recipeToEdit.name)
+        return redirect(url_for('showAllRecipes'))
     if request.method == 'POST':
         if request.form['name'] != "" and request.form['description'] != "" and request.form['category'] != "":
             if request.form['name']:
-                editedRecipe.name = request.form['name']
+                recipeToEdit.name = request.form['name']
             if request.form['description']:
-                editedRecipe.description = request.form['description']
+                recipeToEdit.description = request.form['description']
             if request.form['category']:
-                editedRecipe.category_id = request.form['category']
-            session.add(editedRecipe)
+                recipeToEdit.category_id = request.form['category']
+            session.add(recipeToEdit)
             session.commit()
-            flash('Recipe %s Successfully Edited' % editedRecipe.name)
+            flash('Recipe %s Successfully Edited' % recipeToEdit.name)
             return redirect(url_for('showAllRecipes'))
         else:
             flash('Name and Description cannot be blank')
-            return render_template('editRecipe.html', recipe=editedRecipe)
+            return render_template('editRecipe.html', recipe=recipeToEdit)
     else:
-        return render_template('editRecipe.html', recipe=editedRecipe)
+        return render_template('editRecipe.html', recipe=recipeToEdit)
 
 
 # Delete a recipe
 @app.route('/recipes/<int:recipe_id>/delete/', methods=['GET','POST'])
 def deleteRecipe(recipe_id):
     recipeToDelete = session.query(Recipe).filter_by(id=recipe_id).one()
+    if 'username' not in login_session:
+        return redirect('/login')
+    if recipeToDelete.user_id != login_session['user_id']:
+        flash('You are not authorized to delete %s recipe' % recipeToDelete.name)
+        return redirect(url_for('showAllRecipes'))
     if request.method == 'POST':
         session.delete(recipeToDelete)
         session.commit()
@@ -294,9 +306,6 @@ def disconnect():
             gdisconnect()
             del login_session['gplus_id']
             del login_session['access_token']
-        if login_session['provider'] == 'facebook':
-            fbdisconnect()
-            del login_session['facebook_id']
         del login_session['username']
         del login_session['email']
         del login_session['picture']

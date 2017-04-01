@@ -25,53 +25,56 @@ user2 = User(name="Archer",
 
 users = [user1, user2]
 
-category1 = Category(name="Wraps & Burgers")
-category2 = Category(name="Sides & Salads")
-category3 = Category(name="Soups & Stews")
-category4 = Category(name="Pasta & Noodles")
-category5 = Category(name="Amazing Grains")
-category6 = Category(name="Breakfast")
-category7 = Category(name="Condiments & Sauces")
-category8 = Category(name="Decadent Desserts")
+category1 = Category(name="breakfast")
+category2 = Category(name="entrees")
+category3 = Category(name="sides")
+category4 = Category(name="snacks")
+category5 = Category(name="sweets")
+category6 = Category(name="beverages")
+
 
 categories = [category1, category2, category3, category4,
-              category5, category6, category7, category8]
+              category5, category6]
 
-# Wraps & Burgers recipes
 recipe1 = Recipe(user_id=1,
                  name="Veggie Burger",
                  description="Juicy grilled veggie patty with tomato mayo and lettuce",
-                 picture="http://lorempixel.com/200/200/food",
-                 category=category1)
+                 picture="http://lorempixel.com/100/100/food",
+                 category=category2)
 
-recipe2 = Recipe(user_id=1,
+recipe2 = Recipe(user_id=2,
                  name="Veggie Wrap",
                  description="Juicy grilled tofu with guac and lettuce",
-                 picture="http://lorempixel.com/200/200/food",
-                 category=category1)
+                 picture="http://lorempixel.com/100/100/food",
+                 category=category2)
 
-# Breakfast recipes
 recipe3 = Recipe(user_id=1,
                  name="Chia Seed Pudding",
                  description="Pudding made with almond milk, chia seeds, cardamom, and blueberries",
-                 picture="http://lorempixel.com/200/200/food",
-                 category=category6)
+                 picture="http://lorempixel.com/100/100/food",
+                 category=category1)
 
 
-recipe4 = Recipe(user_id=1,
+recipe4 = Recipe(user_id=2,
                  name="Chocolate Banana Smoothie",
                  description="Banana blended with flax seeds and cocao powder",
-                 picture="http://lorempixel.com/200/200/food",
+                 picture="http://lorempixel.com/100/100/food",
                  category=category6)
 
-recipe5 = Recipe(user_id=1,
+recipe5 = Recipe(user_id=2,
                  name="Avocado Lime Tart",
                  description="Raw vegan avocado key lime pie with a nut and date crust",
-                 picture="http://lorempixel.com/200/200/food",
-                 category=category8)
+                 picture="http://lorempixel.com/100/100/food",
+                 category=category5)
+
+recipe6 = Recipe(user_id=2,
+                 name="Roasted Brussel Sprouts",
+                 description="Roasted brussel sprouts cut in half and coated in balsamic vinegar",
+                 picture="http://lorempixel.com/100/100/food",
+                 category=category3)
 
 
-recipes = [recipe1, recipe2, recipe3, recipe4, recipe5]
+recipes = [recipe1, recipe2, recipe3, recipe4, recipe5, recipe6]
 
 
 def addUsers():
