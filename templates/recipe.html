@@ -25,9 +25,15 @@
 
 	<div class="row">
 		<div class="col-md-6 col-md-offset-1 padding-top">
+			<img src="{{recipe.picture}}">
 			<h6>Category: {{recipe.category.name}}</h6>
 			<h6>Author: {{recipe.user.name}}</h6>
+			<h6>Servings: {{recipe.servings}}</h6>
 			<p>{{recipe.description}}</p>
+			<h4>Ingredients</h4>
+			<p><pre>{{recipe.ingredients}}</pre></p>
+			<h4>Instructions</h4>
+			<p><pre>{{recipe.instructions}}</pre></p>
 			<a href="{{url_for('editRecipe', recipe_id=recipe.id)}}">Edit recipe
 			</a> | 
 			<a href="{{url_for('deleteRecipe', recipe_id=recipe.id)}}">Delete recipe

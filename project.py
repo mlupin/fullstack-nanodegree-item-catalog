@@ -267,6 +267,10 @@ def editRecipe(recipe_id):
                 recipeToEdit.name = request.form['name']
             if request.form['description']:
                 recipeToEdit.description = request.form['description']
+            if request.form['ingredients']:
+                recipeToEdit.ingredients = request.form['ingredients']
+            if request.form['instructions']:
+                recipeToEdit.instructions = request.form['instructions']
             if request.form['category']:
                 recipeToEdit.category_id = request.form['category']
             session.add(recipeToEdit)

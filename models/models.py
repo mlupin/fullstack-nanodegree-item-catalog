@@ -39,11 +39,16 @@ class Recipe(Base):
     id = Column(Integer, primary_key=True)
     description = Column(String(250))
     picture = Column(String(250))
-
+    servings = Column(String())
+    instructions = Column(String())
+    ingredients = Column(String())
     category_id = Column(Integer, ForeignKey('category.id'))
     category = relationship(Category)
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
+
+    created = Column(DateTime())
+    modified = Column(DateTime())
 
     @property
     def serialize(self):
@@ -52,6 +57,9 @@ class Recipe(Base):
             'name': self.name,
             'description': self.description,
             'picture': self.picture,
+            'servings': self.servings,
+            'ingredients': self.ingredients,
+            'instructions': self.instructions,
             'id': self.id,
         }
 
