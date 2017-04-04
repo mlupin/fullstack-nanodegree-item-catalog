@@ -1,17 +1,9 @@
 {% extends "main.html" %}
 {% block content %}
 {% include "header.html" %}
-	<div class="row divider green">
-		<div class="col-md-12"></div>
-	</div>
-	<div class="row banner menu">
-		<div class="col-md-11 col-md-offset-1 padding-none">
-			<h1>Recipes</h1>
-		</div>
-	</div>
-
-	<div class = 'flash'>
-      	{% with messages = get_flashed_messages() %}
+	<div class="row flash">
+		<div class="col-xs-12">		
+	    {% with messages = get_flashed_messages() %}
 	  		{% if messages %}
 		   		<ul>
 		    		{% for message in messages %}
@@ -19,46 +11,22 @@
 		    		{% endfor %}
 		    	</ul>
 	    	{% endif %}
-		{% endwith %}
-
-	</div>
-	
-	<div class="row padding-top padding-bottom">
-		<div class="col-md-1"></div>
-		<div class="col-md-11 padding-none">
-
-			<a href="{{url_for('newRecipe')}}">
-				<button class="btn btn-default" id="new-menu-item">
-					<span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Add Recipe
-				</button>
-			</a>
-
+			{% endwith %}
 		</div>
-		<div class="col-md-7"></div>
 	</div>
 
+	
 	{% if recipes !=[] %}	
-		{% for recipe in recipes %}
-			<div class="row">
-				<div class="col-md-1"></div>
-					<div class="col-md-10 restaurant-list">
-						<a href="{{url_for('showRecipe', recipe_id=recipe.id)}}">
-							<h3>{{recipe.name}}</h3>
-						</a>
-						
-						<h6>Category: {{recipe.category.name}}</h6>
-						<h6>Author: {{recipe.user.name}}</h6>
-						<p>{{recipe.description}}</p>
-						<a href="{{url_for('editRecipe', recipe_id=recipe.id)}}">Edit recipe
-						</a> | 
-						<a href="{{url_for('deleteRecipe', recipe_id=recipe.id)}}">Delete recipe
-						</a>
-					</div>
-				<div class="col-md-1"></div>
-			</div>
-		{% endfor %}
-	{% elif recipes == [] %}
-			<p>no recipes in database</p>
+		<div class="row recipe">
+			{% for recipe in recipes %}
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					<a href="{{url_for('showRecipe', recipe_id=recipe.id)}}">
+						<img class="image-responsive" src="{{recipe.picture}}">
+						<h4 class="recipe-name">{{recipe.name}}</h4>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
 	{% endif %}
-		
+
 {% endblock %}
