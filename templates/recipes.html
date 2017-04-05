@@ -17,14 +17,45 @@
 
 	
 	{% if recipes !=[] %}	
-		<div class="row recipe">
+		<div class="row">
 			{% for recipe in recipes %}
-				<div class="col-xs-12 col-sm-6 col-md-4">
-					<a href="{{url_for('showRecipe', recipe_id=recipe.id)}}">
-						<img class="image-responsive" src="{{recipe.picture}}">
-						<h4 class="recipe-name">{{recipe.name}}</h4>
-					</a>
+
+				<div class="recipe">
+					<div class="col-xs-12">
+						<a href="{{url_for('showRecipe', recipe_id=recipe.id)}}">
+							<h4 class="recipe-name">{{recipe.name}}</h4>
+						</a>
+					</div>
+
+					<div class="col-xs-2">
+						{% if recipe.picture != "" %}	
+							<img src="{{recipe.picture}}">
+						{% else %}
+						  <img src="placehold.it/300x200">
+						{% endif%}
+					</div>
+
+					<div class="col-xs-10">
+						<p>{{recipe.description}}</p>
+					
+						<h6>Category: 
+							<a href="{{url_for('showRecipes', category_id=recipe.category_id)}}">
+								{{recipe.category.name}}
+							</a>
+						</h6>
+						
+						<h6>Author: 
+							<a href="{{url_for('showUsersRecipes', user_id=recipe.user_id)}}"">
+								{{recipe.user.name}}
+							</a>
+						</h6>
+							
+						<h6>Servings: {{recipe.servings}}</h6>
+					</div>
+					
+					
 				</div>
+
 			{% endfor %}
 		</div>
 	{% endif %}

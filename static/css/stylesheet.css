@@ -8,14 +8,11 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 14px;
   background-color: white;
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 10px;
   color: #888;
 }
 
 header, .home {
-  text-transform: uppercase;
+  text-transform: lowercase;
   text-align: center;
   font-family: 'Lato', sans-serif;
   color: black;
@@ -30,20 +27,18 @@ h1 {
 }
 
 h2 {
-  font-size: 24px;
   color: #42C3C9;
 }
 
 h3 {
-  font-size: 18px;
   color: #4A4A4A;
 }
 
 img {
   display: block;
   margin: auto;
-  max-height: 100%;
   max-width: 100%;
+  max-height: 100%;
 }
 
 p {
@@ -54,9 +49,9 @@ p {
 }
 
 pre {
-  max-width: 800px;
   background-color: white;
   border: none;
+  white-space: pre-wrap;
 }
 
 strong {
@@ -69,6 +64,13 @@ a:link {
   font-size: 14px;
   color: #0093B9;
   text-decoration: none;
+}
+
+.container-fluid {
+  padding: 0 15px 0 15px;
+  max-height: 100%;
+  max-width: 100%;
+
 }
 
 .header-link:hover {
@@ -87,13 +89,21 @@ a:link {
   transition: all 0.3s ease-in-out;
 }
 
-.category, .recipe {
+.category {
   text-align: center;
   text-transform: lowercase;
 }
 
-.recipe-name h2 {
+.recipe-name {
   text-transform: uppercase;
+}
+
+.recipe:hover {
+  background-color: lightblue;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .flash {
@@ -104,9 +114,4 @@ a:link {
 .flash li {
   list-style-type: none;
   text-align: center;
-}
-
-.row {
-  margin-left: 0px;
-  margin-right: 0px;
 }

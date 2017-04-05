@@ -2,22 +2,24 @@
 {% block content %}
 {% include "header.html" %}
 
-		{% with messages = get_flashed_messages() %}
-	      {% if messages %}    
-	        <ul>
-	        {% for message in messages %}
-	            <li> <strong> {{ message }} </strong> </li>
-	        {% endfor %}
-	        </ul>
-	        {% endif %}
-	    {% endwith %}
-
+	<div class="row flash">
+		<div class="col-xs-12 col-md-offset-1">		
+	    {% with messages = get_flashed_messages() %}
+	  		{% if messages %}
+		   		<ul>
+		    		{% for message in messages %}
+		        	<li> <strong> {{ message }} </strong> </li>
+		    		{% endfor %}
+		    	</ul>
+	    	{% endif %}
+			{% endwith %}
+		</div>
 	</div>
 	
 	<div class="row">
 			{% for category in categories %}
-				<div class="col-xs-6 col-sm-4 category">
-					<a href = "{{url_for('showRecipes', category_id = category.id)}}">
+				<div class="col-xs-6 col-sm-4">
+					<a class="category" href="{{url_for('showRecipes', category_id = category.id)}}">
 						<img class="image-responsive" src="{{category.picture}}">
 						<h4 class="category-name">{{category.name}}</h4>
 					</a>

@@ -13,7 +13,7 @@
 			<a class="header-link" href="{{url_for('showLogin')}}">Login</a>
 		{% else %}
 			<a class="header-link" href="{{url_for('newRecipe')}}">Add Recipe</a> | 
-			<a class="header-link" href="#">My Account</a> | 
+			<a class="header-link" href="{{url_for('showUsersRecipes', user_id=session['user_id'])}}">My Recipes</a> | 
 			<a class="header-link" href="{{url_for('disconnect')}}">Logout</a>
 		{% endif %}
 	</div>

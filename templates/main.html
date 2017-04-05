@@ -9,22 +9,23 @@
   <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
 
   <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.css') }}">
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/stylesheet.css') }}">
   <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/responsive.css') }}">
-  <script type="text/javascript" src="static/js/jquery-3.1.1.js"></script>
-  <script type="text/javascript" src="static/js/bootstrap.min.js"></script>
 </head>
 
-<body class="container-fluid">
-  <header class="row home">
-  	<div class="main-title col-xs-12">
-      <h1>Minimalist Recipe Blog</h1>
+<body>
+  <header class="container-fluid">
+    <div class="row home">
+      <div class="main-title col-xs-12">
+        <h1>Minimalist Recipe Blog</h1>
+      </div>
     </div>
   </header>
   
-  <main>
+  <main class="container-fluid">
     {{access_error}}
     {% block content %}
     {% endblock %}

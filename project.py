@@ -222,6 +222,11 @@ def showRecipes(category_id):
     recipes = session.query(Recipe).filter_by(category_id=category_id).order_by(asc(Recipe.name))
     return render_template('recipes.html', recipes=recipes)
 
+# Show recipes in a category
+@app.route('/recipes/<int:user_id>')
+def showUsersRecipes(user_id):
+    recipes = session.query(Recipe).filter_by(user_id=user_id).order_by(asc(Recipe.name))
+    return render_template('recipes.html', recipes=recipes)
 
 # Show a recipe
 @app.route('/recipes/<int:recipe_id>/')
@@ -236,16 +241,21 @@ def newRecipe():
     if 'username' not in login_session:
         return redirect('/login')
     if request.method == 'POST':
-        if request.form['name'] != "" and request.form['description'] != "" and request.form['category'] != "":
+        if request.form['name'] != "" and request.form['description'] != "" and request.form['servings'] != "" and request.form['ingredients'] != "" and request.form['instructions'] != "" and request.form['category'] != "":
             createNewRecipe = Recipe(name=request.form['name'],
                                      description=request.form['description'],
-                                     category_id=request.form['category']
+                                     servings=request.form['servings'],
+                                     ingredients=request.form['ingredients'],
+                                     instructions=request.form['instructions'],
+                                     picture="http://placehold.it/600x400",
+                                     category_id=request.form['category'],
+                                     user_id=login_session['user_id']
                                      )
             session.add(createNewRecipe)
             session.commit()
             flash('New Recipe %s Successfully Created' % (createNewRecipe.name))
             return redirect(url_for('showAllRecipes'))
-        else: 
+        else:
             flash('Error')
             return render_template('newRecipe.html')
     else:
@@ -267,6 +277,8 @@ def editRecipe(recipe_id):
                 recipeToEdit.name = request.form['name']
             if request.form['description']:
                 recipeToEdit.description = request.form['description']
+            if request.form['servings']:
+                recipeToEdit.description = request.form['servings']
             if request.form['ingredients']:
                 recipeToEdit.ingredients = request.form['ingredients']
             if request.form['instructions']:
@@ -278,7 +290,7 @@ def editRecipe(recipe_id):
             flash('Recipe %s Successfully Edited' % recipeToEdit.name)
             return redirect(url_for('showAllRecipes'))
         else:
-            flash('Name and Description cannot be blank')
+            flash('Complete all fields')
             return render_template('editRecipe.html', recipe=recipeToEdit)
     else:
         return render_template('editRecipe.html', recipe=recipeToEdit)

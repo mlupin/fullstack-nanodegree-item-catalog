@@ -16,27 +16,27 @@ session = dbSession()
 user1 = User(name="Marina Lupin",
              email="lupinmarina@gmail.com",
              picture='https://pbs.twimg.com/profile_pictures/2671170543'
-                   '/18debd694829ed78203a5a36dd364160_400x400.png')
+                   '/18debd694829ed78203a5a36dd364160_400x400.jpg')
 
 user2 = User(name="Archer",
              email="archer@example.com",
              picture='https://pbs.twimg.com/profile_pictures/2671170543'
-                   '/18debd694829ed78203a5a36dd364160_400x400.png')
+                   '/18debd694829ed78203a5a36dd364160_400x400.jpg')
 
 users = [user1, user2]
 
 category1 = Category(name="breakfast",
-                     picture="/static/images/chia-seed-pudding.jpg")
+                     picture="/static/images/chia-seed-pudding-small.jpg")
 category2 = Category(name="entrees",
-                     picture="/static/images/burger.jpg")
+                     picture="/static/images/burger-small.jpg")
 category3 = Category(name="sides",
-                     picture="/static/images/brussels-sprouts.jpg")
+                     picture="/static/images/brussels-sprouts-small.jpg")
 category4 = Category(name="snacks",
-                     picture="/static/images/toast.jpg")
+                     picture="/static/images/toast-small.jpg")
 category5 = Category(name="sweets",
-                     picture="/static/images/cheesecake.jpg")
+                     picture="/static/images/cheesecake-small.jpg")
 category6 = Category(name="beverages",
-                     picture="/static/images/smoothie.jpg")
+                     picture="/static/images/smoothie-small.jpg")
 
 
 categories = [category1, category2, category3, category4,
@@ -46,7 +46,7 @@ recipe1 = Recipe(user_id=1,
                  name="Chia Seed Pudding",
                  description="Pudding made with almond milk, chia seeds, cardamom, and blueberries. "
                              "Healthy and filling breakfast to start your day with plenty of fiber.",
-                 picture="/static/images/chia-seed-pudding.jpg",
+                 picture="/static/images/chia-seed-pudding-small.jpg",
                  servings=4,
                  ingredients="- 2 cups almond milk (homemade or natural)\n"
                              "- 1/2 cup Chia Seeds\n"
@@ -62,7 +62,7 @@ recipe1 = Recipe(user_id=1,
 recipe2 = Recipe(user_id=1,
                  name="Oatmeal",
                  description="Easy oatmeal that is great for those in a hurry.",
-                 picture="/static/images/oats.jpg",
+                 picture="/static/images/oats-small.jpg",
                  servings=1,
                  ingredients="- 1 cup almond milk (homemade or natural)\n"
                              "- 3 Tbsp oats\n"
@@ -79,7 +79,7 @@ recipe2 = Recipe(user_id=1,
 recipe3 = Recipe(user_id=1,
                  name="Berry Acai Bowl",
                  description="Easy oatmeal that is great for those in a hurry.",
-                 picture="/static/images/acai-bowl.jpg",
+                 picture="/static/images/acai-bowl-small.jpg",
                  servings=1,
                  ingredients="Smoothie:\n"
                              "- 2/3 cup fresh or frozen blueberries or blackberries\n"
@@ -100,8 +100,8 @@ recipe3 = Recipe(user_id=1,
 recipe4 = Recipe(user_id=1,
                  name="Stuffed Bell Peppers",
                  description="Favorite Russian family recipe.",
-                 picture="/static/images/stuffed-bell-peppers2.jpg",
-                 servings=1,
+                 picture="/static/images/stuffed-bell-peppers-small.jpg",
+                 servings=6,
                  ingredients="Stuffing:\n"
                              "- 1 lb (500 g) ground meat (lamb, beef, pork or their mixture, coarse-ground is better than fine-ground)\n"
                              "- 1/4 - 1/2 large finely chopped onion, white or yellow\n"
@@ -124,7 +124,7 @@ recipe4 = Recipe(user_id=1,
                  instructions="1. In the casserole or a large enough pot to accommodate 6 peppers standing in one row on the bottom of the pot, preheat the oil.\n"
                               "2. Saute (on high/medium heat) carrots, onion (or leeks), and other optional vegetables: celery, mushrooms, pepper, tomatoes.\n"
                               "3. Add in the saut2 1/4 tsp salt, black pepper and other dry or fresh herbs.\n"
-                              "4. Mix all ingredients for the stuffing sand put the stuffing inside bell peppers.\n"
+                              "4. Mix all ingredients for the stuffing and put the stuffing inside bell peppers.\n"
                               "5. Place stuffed peppers in the casserole above sauteed vegetable, season generously with fresh herbs.\n"
                               "6. Pour a table spoon of sour cream on the top of each pepper (optional).\n"
                               "7. Put the lead on the casserole, make the heat on medium, and cook for an hour.\n"
@@ -135,15 +135,15 @@ recipe4 = Recipe(user_id=1,
 recipe5 = Recipe(user_id=1,
                  name="Thai Salad",
                  description="Thai-inspired carrot and cucumber salad with a savory-sweet dressing and cashews.",
-                 picture="/static/images/thai-salad3.jpg",
-                 servings=3-4,
+                 picture="/static/images/thai-salad-small.jpg",
+                 servings=4,
                  ingredients="Dressing:\n"
                              "- 2 cloves garlix, minced\n"
                              "- 2 Tbsp raw or roasted peanuts\n"
                              "- 1 fresh or dried thai chili (option to substitute with 1 tsp red pepper flake)\n"
                              "- 1 Tbsp coconut sugar (or agave, honey, maple syrup)\n"
                              "- 1/4 cup lime juice\n"
-                             "- 1 Tbsp tamari or soy sauce"
+                             "- 1 Tbsp tamari or soy sauce\n"
                              "Salad:\n"
                              "- 1/2 cup cashews\n"
                              "- 1/2 cup peanuts\n"
@@ -165,7 +165,7 @@ recipe5 = Recipe(user_id=1,
 recipe6 = Recipe(user_id=1,
                  name="Miso Soup",
                  description="Simple vegan miso soup with mushrooms and tofu.",
-                 picture="/static/images/miso2.jpg",
+                 picture="/static/images/miso-small.jpg",
                  servings=3,
                  ingredients="- 40 g soba noodles\n"
                              "- 3 Tbsp miso paste\n"
@@ -187,7 +187,7 @@ recipe6 = Recipe(user_id=1,
 recipe7 = Recipe(user_id=2,
                  name="Roasted Brussel Sprouts",
                  description="Roasted brussel sprouts cut in half and coated in balsamic vinegar.",
-                 picture="/static/images/brussels-sprouts.jpg",
+                 picture="/static/images/brussels-sprouts-small.jpg",
                  servings=6,
                  ingredients="- 1 1/2 pounds Brussels sprouts, ends trimmed and yellow leaves removed\n"
                              "- 2-3 Tbsp olive oil\n"
@@ -202,10 +202,10 @@ recipe7 = Recipe(user_id=2,
                  category=category3)
 
 recipe8 = Recipe(user_id=2,
-                 name="Sweet Potato Fried",
+                 name="Sweet Potato Fries",
                  description="Healthy option to replace your favorite french fries. "
                              "Great side to serve with fish, veggies, or have as a snack.",
-                 picture="/static/images/fries.jpg",
+                 picture="/static/images/fries-small.jpg",
                  servings=6,
                  ingredients="- 1 medium size sweet potato\n"
                              "- 2-3 Tbsp olive oil\n"
@@ -225,7 +225,7 @@ recipe8 = Recipe(user_id=2,
 recipe9 = Recipe(user_id=2,
                  name="Hummus",
                  description="Roasted brussel sprouts cut in half and coated in balsamic vinegar.",
-                 picture="/static/images/hummus.jpg",
+                 picture="/static/images/hummus-small.jpg",
                  servings=8,
                  ingredients="- 1 15-ounce can chickpeas, NOT drained (option to cook chickpeas)\n"
                              "- 2-4 cloves garlic\n"
@@ -243,7 +243,7 @@ recipe10 = Recipe(user_id=2,
                  name="Hummus Avocado Toast",
                  description="Simple vegan hummus-avocado toast perfect for breakfast or lunch or a snack. "
                              "Multigrain toast topped with heart-healthy fats and plant proteins.",
-                 picture="/static/images/toast.jpg",
+                 picture="/static/images/toast-small.jpg",
                  servings=1,
                  ingredients="- 2 slices sprouted grain bread, toasted\n"
                              "- 2 tbsp hummus\n"
@@ -262,7 +262,7 @@ recipe10 = Recipe(user_id=2,
 recipe11 = Recipe(user_id=2,
                  name="Muesli Bar",
                  description="Healthy, no bake granola bars with a sweet and crunchy texture.",
-                 picture="/static/images/muesli-bar2.jpg",
+                 picture="/static/images/muesli-bar-small.jpg",
                  servings=12,
                  ingredients="- 220 g medjool dates, pitted\n"
                              "- 1/4 cup maple syrup, agave nectar, or honey if not vegan\n"
@@ -271,7 +271,7 @@ recipe11 = Recipe(user_id=2,
                              "- 1/4 cup unsalted walnuts, loosely chopped\n"
                              "- 1/4 cup unsalted pumpkin seeds\n"
                              "- 1/4 cup unsalted sunflower seeds\n"
-                             "- 1 1/2 cups (135 g) rolled oats (gluten free for GF eaters)",
+                             "- 1 1/2 cups (135 g) rolled oats",
                  instructions="1. Process dates in a food processor to form a dough like consistency.\n"
                               "2. Place oats, nuts, seeds, and dates in a large mixing bowl - set aside.\n"
                               "3. Warm honey and nut butter in a saucepan over low heat.\n"
@@ -285,7 +285,7 @@ recipe11 = Recipe(user_id=2,
 recipe12 = Recipe(user_id=2,
                  name="Juice Pulp Muffins",
                  description="Time to reuse your juicer pulp and enjoy there incredibly moist and high in fiber muffins. Perfect as a to-go snacks!",
-                 picture="/static/images/muffins.jpg",
+                 picture="/static/images/muffins-small.jpg",
                  servings=24,
                  ingredients="- 1 banana, mashed\n"
                              "- 2 cups veggie or fruit pulp\n"
@@ -294,7 +294,7 @@ recipe12 = Recipe(user_id=2,
                              "- 1 Tbsp baking powder\n"
                              "- 1/4 cup flaxseed meal\n"
                              "- 1/2 tsp salt\n"
-                             "- 3/4 cup almond milk"
+                             "- 3/4 cup almond milk\n"
                              "- 1 tsp vanilla extract\n"
                              "- 1 tsp nutmeg\n"
                              "- 2 tsp cinnamon\n",
@@ -311,34 +311,33 @@ recipe13 = Recipe(user_id=1,
                  name="Gingerbread",
                  description="This is my mum's recipe and she often made this gingerbread for Christmas. "
                              "Classic gingerbread with fresh ginger, apples, and brown sugar. Perfect dessert to share with loved ones during fall holidays.",
-                 picture="/static/images/gingerbread.jpg",
-                 servings=12-15,
+                 picture="/static/images/gingerbread-small.jpg",
+                 servings=15,
                  ingredients="- 2/3 cup (160 g) whole milk\n"
                             "- 3/4 cup (160 g) dark brown sugar\n"
-                            "2 tbsp molasses\n"
-                            "2/3 cup (170 g) unsalted butter\n"
-                            "1 egg\n"
-                            "1 5/8 cup (200 g) all purpose flour\n"
-                            "30-50 g fresh ginger root peeled\n"
-                            "2 tbsp baking powder\n"
-                            "1 large apple peeled, chopped and coated with 1 tbsp lemon juice",
-                 instructions="1. Preheat the oven to 400F/200C\n"
-                              "2. In a small saucepan, over low heat, melt the butter, sugar and molasses\n"
-                              "3. While the vegetables saute, prepare pepper (wash it and remove using the paring knife the stalk and seeds.\n"
-                              "4. Mix all ingredients for the stuffings and .\n"
-                              "5. Add buttery mixture, stir.\n"
-                              "6. Add apples, stir.\n"
-                              "7. Grease the baking dish with butter. Pour the mixture in the dish.\n"
-                              "8. Bake 35-45 minutes or until brown on the top and done (check with a knife inserted in the center).\n"
-                              "9. Serve hot, warm or cold with whipped cream (1 cup of heavy whipped cream whipped with 1/4 cup sugar).",
+                            "- 2 tbsp molasses\n"
+                            "- 2/3 cup (170 g) unsalted butter\n"
+                            "- 1 egg\n"
+                            "- 1 5/8 cup (200 g) all purpose flour\n"
+                            "- 30-50 g fresh ginger root peeled\n"
+                            "- 2 tbsp baking powder\n"
+                            "- 1 large apple peeled, chopped and coated with 1 tbsp lemon juice",
+                 instructions="1. Preheat the oven to 400F/200C.\n"
+                              "2. In a small saucepan, over low heat, melt the butter, sugar and molasses.\n"
+                              "3. Grate the ginger finely in a large bowl. Add in the bowl flour, baking powder, the milk and egg. Stir well.\n"
+                              "4. Add buttery mixture, stir.\n"
+                              "5. Add apples, stir.\n"
+                              "6. Grease the baking dish with butter. Pour the mixture in the dish.\n"
+                              "7. Bake 35-45 minutes or until brown on the top and done (check with a knife inserted in the center).\n"
+                              "8. Serve hot, warm or cold with whipped cream (1 cup of heavy whipped cream whipped with 1/4 cup sugar).",
                  category=category5
                  )
 
 recipe14 = Recipe(user_id=1,
                  name="Clafoutis",
                  description="A traditional French dessert. This clafoutis is moderately sweet despite very sweet cherries and sweetened coconut.",
-                 picture="/static/images/clafoutis3.jpg",
-                 servings=12-15,
+                 picture="/static/images/clafoutis-small.jpg",
+                 servings=15,
                  ingredients="- 1/2 cup (120 g) whole milk\n"
                              "- 1/2 cup (120 g) heavy cream\n"
                              "- 1/4 cup (50 g) sugar\n"
@@ -352,17 +351,16 @@ recipe14 = Recipe(user_id=1,
                               "2. Place the cherries into the baking dish.\n"
                               "3. In a medium saucepan, heat slightly the cream, salt, and vanilla pod splited in two. Remove from the heat, add milk, and remove vanilla pod.\n"
                               "4. In a large bowl, whisk the eggs with sugar, using the electrical mixer. Add flour and continue mixing with the mixer. Then add the cream and coconuts, mixing constantly.\n"
-                              "5. Pour the warm custard over the cherries. Bake for about 35-40 minutes, or until golden on top. (To make sure that the pie is ready, use a knife to stick inside, if the knife goes out clean, then the pie is ready. It is OK to open the oven and even remove the pie from it, and if it is not ready yet, to put it back in the oven.).\n"
+                              "5. Pour the warm custard over the cherries. Bake for about 35-40 minutes, or until golden on top.\n"
                               "6. Serve warm with whipped heavy cream. Remember about the cherries pits!\n",
                  category=category5
                  )
 
 
-
 recipe15 = Recipe(user_id=1,
                  name="Chocolate Chip Cookies",
                  description="Play on traditional chocolate chip cookies but with almond meal. Crispy on the outside, chewy on the inside!",
-                 picture="/static/images/cookies.jpg",
+                 picture="/static/images/cookies-small.jpg",
                  servings=12,
                  ingredients="- 1 1/4 cups almond meal\n"
                              "- 1/4 cup dark chocolate chips or bar, loosely chopped\n"
@@ -387,7 +385,7 @@ recipe15 = Recipe(user_id=1,
 recipe16 = Recipe(user_id=2,
                  name="Chocolate Banana Smoothie",
                  description="Power charge your day with this velvety smooth smoothie.",
-                 picture="/static/images/chocolate-smoothie.jpg",
+                 picture="/static/images/chocolate-smoothie-small.jpg",
                  servings=1,
                  ingredients="- 1 banana\n"
                              "- 1 Tbsp cocoa powder\n"
@@ -399,7 +397,7 @@ recipe16 = Recipe(user_id=2,
 recipe17 = Recipe(user_id=1,
                  name="Matcha Latte",
                  description="Enjoy this creamy matcha tea drink for an antioxidant and energy boost.",
-                 picture="/static/images/matcha2.jpg",
+                 picture="/static/images/matcha-small.jpg",
                  servings=1,
                  ingredients="- 3/4 cup almond milk (homemade or natural)\n"
                              "- 1/4 cup boiling water\n"
@@ -414,10 +412,10 @@ recipe17 = Recipe(user_id=1,
 recipe18 = Recipe(user_id=1,
                  name="Beet and Carrot Juice",
                  description="Enjoy this creamy matcha tea drink for an antioxidant and energy boost.",
-                 picture="/static/images/juice.jpg",
+                 picture="/static/images/juice-small.jpg",
                  servings=1,
                  ingredients="- 1 medium beet, peeled and chopped\n"
-                             "- 2 carrots, peeled and chopped"
+                             "- 2 carrots, peeled and chopped\n"
                              "- 1/4 inch piece of ginger root\n"
                              "- 1/2 lemon\n"
                              "- 1/2 cup water",
