@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html {
+  max-height: 100%;
+  max-width: 100%;
+}
 body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -11,18 +15,10 @@ body {
   color: #888;
 }
 
-header, .home {
-  text-transform: lowercase;
-  text-align: center;
-  font-family: 'Lato', sans-serif;
-  color: black;
-}
 
 h1 {
   font-family: "Helvetica Neue Light", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 50px;
   color: #51453B;
-  line-height: 60px;
   font-weight: 300;
 }
 
@@ -52,6 +48,7 @@ pre {
   background-color: white;
   border: none;
   white-space: pre-wrap;
+  width: 100%;
 }
 
 strong {
@@ -66,21 +63,18 @@ a:link {
   text-decoration: none;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 .container-fluid {
   padding: 0 15px 0 15px;
   max-height: 100%;
   max-width: 100%;
 
 }
-
-.header-link:hover {
-  background-color: lightblue;
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
-
 .image-responsive:hover {
   opacity: 0.3;
   -webkit-transition: all 0.3s ease-in-out;
@@ -89,12 +83,18 @@ a:link {
   transition: all 0.3s ease-in-out;
 }
 
-.category {
+.category-name {
   text-align: center;
-  text-transform: lowercase;
+  text-transform: uppercase;
 }
 
-.recipe-name {
+/*
+ *
+ * Recipes
+ *
+ */
+
+.recipe-name{
   text-transform: uppercase;
 }
 
@@ -106,6 +106,44 @@ a:link {
   transition: all 0.2s ease-in-out;
 }
 
+
+/*
+ *
+ * Header
+ *
+ */
+
+.header {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+  min-height: 56px;
+  transition: min-height 0.3s;
+  padding-left: 15px;
+  text-transform: lowercase;
+  font-family: 'Lato', sans-serif;
+  color: black;
+}
+
+.header-inner {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-title {
+  font-weight: 300;
+  font-size: 4em;
+  margin: 0.25em 0.25em;
+  display: inline-block;
+  color: #212121;
+}
+
+
+/*
+ *
+ * Flash Messages
+ *
+ */
+
 .flash {
   width:100%;
   text-decoration: none;
@@ -114,4 +152,44 @@ a:link {
 .flash li {
   list-style-type: none;
   text-align: center;
+}
+
+/*
+ *
+ * Top Level Navigation
+ *
+ */
+
+.nav {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav-list {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: center;
+  line-height: 15px;
+  padding: 15px;
+  text-transform: lowercase;
+}
+.nav-item:hover {
+  background-color: lightblue;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #616161;
+  padding: 1.5em;
 }

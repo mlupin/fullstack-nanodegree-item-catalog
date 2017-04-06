@@ -1,111 +1,114 @@
 {% extends "main.html" %}
 {% block content %}
-{% include "header.html" %}
 
-	<div class="row">
-		<div class="col-xs-12 col-md-offset-1">
-			<h2>Edit Recipe</h2>
-		</div>
-	</div>
-
-	<div class="row flash">
-		<div class="col-xs-12 col-md-offset-1">		
-	    {% with messages = get_flashed_messages() %}
-	  		{% if messages %}
-		   		<ul>
-		    		{% for message in messages %}
-		        	<li> <strong> {{ message }} </strong> </li>
-		    		{% endfor %}
-		    	</ul>
-	    	{% endif %}
-			{% endwith %}
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-md-6 col-md-offset-1">
-			<form action="#" method = "post">
-				<div class="form-group">
-					<label for="name">Name:</label>
-					<input type ="text" maxlength="100" class="form-control" name="name" value="{{recipe.name }}">
-
-					<label for="servings">Servings:</label>
-					<input type ="text" maxlength="2" class="form-control" name="servings" value="{{recipe.servings}}">
-
-					<label for="description">Description:</label>
-					<textarea class="form-control" maxlength="250" rows="3" name="description">{{recipe.description}}</textarea>
-
-					<label for="ingrediesnt">Ingredients:</label>
-					<textarea class="form-control" rows="3" name="ingredients">{{recipe.ingredients}}</textarea>
-
-					<label for="instructions">Instructions:</label>
-					<textarea class="form-control" rows="3" name="instructions">{{recipe.instructions}}</textarea>
-					
-					<label for="category">Category:</label>
-					<div class="radio">
-					  <label>
-					    <input type="radio" name="category" value="1"
-					    	{% if recipe.category_id == 1 %}
-					    		checked
-					    	{%endif%}
-					 	>breakfast
-					  </label>
-					</div>
-					<div class="radio">
-					  <label>
-					    <input type="radio" name="category" value="2"
-					    	{% if recipe.category_id == 2 %}
-					    		checked
-					    	{%endif%}
-					 	>entrees
-					  </label>
-					</div>
-					<div class="radio">
-					  <label>
-					    <input type="radio" name="category" value="3"
-					    	{% if recipe.category_id == 3 %}
-					    		checked
-					    	{%endif%}
-					 	>sides
-					  </label>
-					</div>
-					<div class="radio">
-					  <label>
-					    <input type="radio" name="category" value="4"
-					    	{% if recipe.category_id == 4 %}
-					    		checked
-					    	{%endif%}
-					    >snacks
-					  </label>
-					</div>
-					<div class="radio">
-					  <label>
-					    <input type="radio" name="category" value="5"
-					    	{% if recipe.category_id == 5 %}
-					    		checked
-					    	{%endif%}
-					    >beverages
-					  </label>
-					</div>
-					<div class="radio">
-					  <label>
-					    <input type="radio" name="category" value="6"
-					    	{% if recipe.category_id == 6 %}
-					    		checked
-					    	{%endif%}
-					    >sweets
-					  </label>
-					</div>
-
-					<button type="submit" class="btn btn-default" id="submit" type="submit">
-					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save</button>
+	{%if 'username' in session %}
+		{%if session['user_id'] == recipe.user_id %}
+			<div class="row">
+				<div class="col-xs-12">
+					<h2>Edit Recipe</h2>
 				</div>
-			</form>
+			</div>
 
-			<a href = '{{url_for('showAllRecipes')}}'>
-				<button class="btn btn-default delete">
-				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
-			</a>
-		</div>
-	</div>
+			<div class="row flash">
+				<div class="col-xs-12">		
+			    {% with messages = get_flashed_messages() %}
+			  		{% if messages %}
+				   		<ul>
+				    		{% for message in messages %}
+				        	<li> <strong> {{ message }} </strong> </li>
+				    		{% endfor %}
+				    	</ul>
+			    	{% endif %}
+					{% endwith %}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<form action="#" method = "post">
+						<div class="form-group">
+							<label for="name">Name:</label>
+							<input type ="text" maxlength="100" class="form-control" name="name" value="{{recipe.name }}">
+
+							<label for="servings">Servings:</label>
+							<input type ="text" maxlength="2" class="form-control" name="servings" value="{{recipe.servings}}">
+
+							<label for="description">Description:</label>
+							<textarea class="form-control" maxlength="250" rows="3" name="description">{{recipe.description}}</textarea>
+
+							<label for="ingrediesnt">Ingredients:</label>
+							<textarea class="form-control" rows="3" name="ingredients">{{recipe.ingredients}}</textarea>
+
+							<label for="instructions">Instructions:</label>
+							<textarea class="form-control" rows="3" name="instructions">{{recipe.instructions}}</textarea>
+							
+							<label for="category">Category:</label>
+							<div class="radio">
+							  <label>
+							    <input type="radio" name="category" value="1"
+							    	{% if recipe.category_id == 1 %}
+							    		checked
+							    	{%endif%}
+							 	>breakfast
+							  </label>
+							</div>
+							<div class="radio">
+							  <label>
+							    <input type="radio" name="category" value="2"
+							    	{% if recipe.category_id == 2 %}
+							    		checked
+							    	{%endif%}
+							 	>entrees
+							  </label>
+							</div>
+							<div class="radio">
+							  <label>
+							    <input type="radio" name="category" value="3"
+							    	{% if recipe.category_id == 3 %}
+							    		checked
+							    	{%endif%}
+							 	>sides
+							  </label>
+							</div>
+							<div class="radio">
+							  <label>
+							    <input type="radio" name="category" value="4"
+							    	{% if recipe.category_id == 4 %}
+							    		checked
+							    	{%endif%}
+							    >snacks
+							  </label>
+							</div>
+							<div class="radio">
+							  <label>
+							    <input type="radio" name="category" value="5"
+							    	{% if recipe.category_id == 5 %}
+							    		checked
+							    	{%endif%}
+							    >beverages
+							  </label>
+							</div>
+							<div class="radio">
+							  <label>
+							    <input type="radio" name="category" value="6"
+							    	{% if recipe.category_id == 6 %}
+							    		checked
+							    	{%endif%}
+							    >sweets
+							  </label>
+							</div>
+
+							<button type="submit" class="btn btn-default" id="submit" type="submit">
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save</button>
+						</div>
+					</form>
+
+					<a href = '{{url_for('showAllRecipes')}}'>
+						<button class="btn btn-default delete">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
+					</a>
+				</div>
+			</div>
+		{% endif %}
+  {% endif %}
 {% endblock %}

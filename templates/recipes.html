@@ -1,6 +1,6 @@
 {% extends "main.html" %}
 {% block content %}
-{% include "header.html" %}
+
 	<div class="row flash">
 		<div class="col-xs-12">		
 	    {% with messages = get_flashed_messages() %}
@@ -27,15 +27,17 @@
 						</a>
 					</div>
 
-					<div class="col-xs-2">
+					<div class="col-xs-4">
 						{% if recipe.picture != "" %}	
-							<img src="{{recipe.picture}}">
+							<a href="{{url_for('showRecipe', recipe_id=recipe.id)}}">
+							  <img src="{{recipe.picture}}">
+						  </a>
 						{% else %}
 						  <img src="placehold.it/300x200">
 						{% endif%}
 					</div>
 
-					<div class="col-xs-10">
+					<div class="col-xs-8">
 						<p>{{recipe.description}}</p>
 					
 						<h6>Category: 

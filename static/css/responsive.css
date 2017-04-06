@@ -3,6 +3,65 @@ html {
     max-height: 100%;
 }
 
-img {
+/*img {
     transition: width 0.5s;
+}
+*/
+body {
+  font-size: 14px;
+  line-height:  1.2em;
+}
+/*.content {
+  display: flex;
+  flex-wrap: wrap;
+}*/
+.header-menu {
+  display: none;
+}
+
+@media screen and (max-width: 610px) {
+  .header-title {
+    margin-left: 0;
+    font-size: 2em;
+    vertical-align: bottom; 
+  }
+  .nav {
+    z-index: 10;
+    background-color: #fff;
+    width: 300px;
+    position: absolute;
+    /* This trasform moves the drawer off canvas. */
+    -webkit-transform: translate(-300px, 0);
+    transform: translate(-300px, 0);
+    /* Optionally, we animate the drawer. */
+    transition: transform 0.3s ease;
+  }
+  .nav.open {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+  .nav-item {
+    display: list-item;
+    border-bottom: 1px solid #E0E0E0;
+    width: 100%;
+    text-align: left;
+  }
+  .header-menu {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    padding: 1em;
+  }
+  .header-menu svg {
+    width: 32px;
+    fill: #E0E0E0;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  main, .header-inner, .nav, .content {
+    width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
