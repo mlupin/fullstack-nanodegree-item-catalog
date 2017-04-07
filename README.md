@@ -4,6 +4,10 @@ This project is a simple web application that provides a list of recipes within 
 
 Initial [Vagrant](https://www.vagrantup.com/) config cloned from [this repo](https://github.com/udacity/fullstack-nanodegree-vm).
 
+### Screenshots
+![alt text](static/recipe1.png "List of all recipes")
+![alt text](static/recipe2.png "Single recipe page")
+
 ### Basic features
 
 * Non authenticated users can browse the categories and list of recipes, but cannot make any modifications.
