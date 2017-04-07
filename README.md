@@ -1,6 +1,6 @@
 # Item Catalog
 
-This project is a simple web application that provides a list of recipes within several categories. It uses third party authentication, and logged in users can add, edit, and delete their own recipes. Project is built using Python, Flask, SQL Alchemy, and Twitter Bootstrap.
+This project is a simple web application that provides a list of recipes within several categories. It uses third party authentication, and logged in users can add, edit, and delete their own recipes. Project was built using Python, Flask, SQL Alchemy, and Twitter Bootstrap.
 
 Initial [Vagrant](https://www.vagrantup.com/) config cloned from [this repo](https://github.com/udacity/fullstack-nanodegree-vm).
 
