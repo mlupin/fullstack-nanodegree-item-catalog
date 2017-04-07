@@ -1,21 +1,22 @@
+import os
+
 from flask import Flask, render_template, request, redirect, jsonify, url_for, flash
+from flask import session as login_session
+from flask import make_response
+
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
-# from models.base import Base
-# from models.user import User
-# from models.category import Category
-# from models.recipe import Recipe
+
 from models.models import Base, User, Category, Recipe
-from flask import session as login_session
+
 import random
 import string
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
 import httplib2
 import json
-from flask import make_response
-import requests
 
+import requests
 
 app = Flask(__name__)
 
@@ -25,13 +26,13 @@ CLIENT_ID = json.loads(
 APPLICATION_NAME = "Item Catalog Recipe App"
 
 
+
 # Connect to Database and create database session
 engine = create_engine('sqlite:///recipes.db')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
-
 
 # User Helper Functions
 def createUser(login_session):
@@ -178,6 +179,7 @@ def gdisconnect():
             json.dumps('Failed to revoke token for given user.'), 400)
         response.headers['Content-Type'] = 'application/json'
         return response
+
 #JSON APIs to view Restaurant Information
 @app.route('/categories/<int:category_id>/recipes/JSON')
 def categoryRecipesJSON(category_id):
@@ -235,65 +237,109 @@ def showRecipe(recipe_id):
     return render_template('recipe.html', recipe=recipeToShow)
 
 
+@app.route('/recipe/<int:recipe_id>/picture/')
+def recipePicture(recipe_id):
+    recipe = session.query(Recipe).get(recipe_id)
+
+    file_extension = recipe.picture.rsplit('.', 1)[1].lower()
+
+    if file_extension == "jpg" or file_extension == "jpeg":
+        content_type = "image/jpeg"
+    else:
+        content_type = "image/png" # the image type must be png, as only jpg and png are allowed
+
+    return recipe.picture_data, 200, {'Content-Type': content_type, 'Content-Disposition': "filename='%s'" % recipe.picture}
+
 # Create a new recipe
 @app.route('/recipe/new/', methods=['GET', 'POST'])
-def newRecipe():
+def createRecipe():
+    categories = session.query(Category).all()
     if 'username' not in login_session:
         return redirect('/login')
     if request.method == 'POST':
-        if request.form['name'] != "" and request.form['description'] != "" and request.form['servings'] != "" and request.form['ingredients'] != "" and request.form['instructions'] != "" and request.form['category'] != "":
-            createNewRecipe = Recipe(name=request.form['name'],
-                                     description=request.form['description'],
-                                     servings=request.form['servings'],
-                                     ingredients=request.form['ingredients'],
-                                     instructions=request.form['instructions'],
-                                     picture="http://placehold.it/600x400",
-                                     category_id=request.form['category'],
-                                     user_id=login_session['user_id']
-                                     )
-            session.add(createNewRecipe)
-            session.commit()
-            flash('New Recipe %s Successfully Created' % (createNewRecipe.name))
-            return redirect(url_for('showAllRecipes'))
-        else:
-            flash('Error')
-            return render_template('newRecipe.html')
+        name = request.form['name'].strip()
+        if not name:
+            flash("Please enter a name.", "danger")
+            return render_template('createRecipe.html', categories=categories)
+
+        category_name = request.form['category'].strip()
+        if not category_name:
+            flash("Please choose a category")
+            return render_template('createRecipe.html', categories=categories)
+        try:
+            category = session.query(Category).filter_by(name=category_name).one()
+        except Exception, e:
+            flash("Please choose a valid category.")
+            return render_template('createRecipe.html', categories=categories)  
+
+        description = request.form['description'].strip()
+        servings = request.form['servings'].strip()
+        ingredients = request.form['ingredients']
+        instructions = request.form['instructions']
+
+        recipeToCreate = Recipe(name=name,
+                                description=description,
+                                servings=servings,
+                                ingredients=ingredients,
+                                instructions=instructions,
+                                category=category,
+                                user_id=login_session['user_id']
+                                # creation_date=datetime.utcnow()
+                                )
+        session.add(recipeToCreate)
+        session.commit()
+        flash('New Recipe %s Successfully Created' % (recipeToCreate.name))
+        return redirect(url_for('showAllRecipes'))
+
     else:
-        return render_template('newRecipe.html')
+        return render_template('createRecipe.html', categories=categories)
 
 
 # Edit a recipe
 @app.route('/recipes/<int:recipe_id>/edit/', methods=['GET','POST'])
 def editRecipe(recipe_id):
+    categories = session.query(Category).all()
     recipeToEdit = session.query(Recipe).filter_by(id=recipe_id).one()
+
     if 'username' not in login_session:
         return redirect('/login')
     if recipeToEdit.user_id != login_session['user_id']:
         flash('You are not authorized to edit %s recipe' % recipeToEdit.name)
         return redirect(url_for('showAllRecipes'))
     if request.method == 'POST':
-        if request.form['name'] != "" and request.form['description'] != "" and request.form['category'] != "":
-            if request.form['name']:
-                recipeToEdit.name = request.form['name']
-            if request.form['description']:
-                recipeToEdit.description = request.form['description']
-            if request.form['servings']:
-                recipeToEdit.description = request.form['servings']
-            if request.form['ingredients']:
-                recipeToEdit.ingredients = request.form['ingredients']
-            if request.form['instructions']:
-                recipeToEdit.instructions = request.form['instructions']
-            if request.form['category']:
-                recipeToEdit.category_id = request.form['category']
-            session.add(recipeToEdit)
-            session.commit()
-            flash('Recipe %s Successfully Edited' % recipeToEdit.name)
-            return redirect(url_for('showAllRecipes'))
-        else:
-            flash('Complete all fields')
-            return render_template('editRecipe.html', recipe=recipeToEdit)
+        name = request.form['name'].strip()
+        if not name:
+            flash("Please enter a name.")
+            return render_template('editRecipe.html', categories=categories, recipe=recipeToEdit)
+
+        category_name = request.form['category'].strip()
+        if not category_name:
+            flash("Please choose a category")
+            return render_template('editRecipe.html', categories=categories, recipe=recipeToEdit)
+        try:
+            category = session.query(Category).filter_by(name=category_name).one()
+        except Exception, e:
+            flash("Please choose a valid category")
+            return render_template('editRecipe.html', categories=categories, recipe=recipeToEdit)
+
+        description = request.form['description'].strip()
+        servings = request.form['servings'].strip()
+        ingredients = request.form['ingredients']
+        instructions = request.form['instructions']
+
+        recipeToEdit.name = name
+        recipeToEdit.description = description
+        recipeToEdit.servings = servings
+        recipeToEdit.ingredients = ingredients
+        recipeToEdit.instructions = instructions
+        recipeToEdit.category = category
+
+        session.add(recipeToEdit)
+        session.commit()
+        flash('Recipe %s Successfully Edited' % recipeToEdit.name)
+        return redirect(url_for('showAllRecipes'))  
     else:
-        return render_template('editRecipe.html', recipe=recipeToEdit)
+        return render_template('editRecipe.html', recipe=recipeToEdit, categories=categories)
 
 
 # Delete a recipe

@@ -42,61 +42,12 @@
 							<label for="instructions">Instructions:</label>
 							<textarea class="form-control" rows="3" name="instructions">{{recipe.instructions}}</textarea>
 							
-							<label for="category">Category:</label>
-							<div class="radio">
-							  <label>
-							    <input type="radio" name="category" value="1"
-							    	{% if recipe.category_id == 1 %}
-							    		checked
-							    	{%endif%}
-							 	>breakfast
-							  </label>
-							</div>
-							<div class="radio">
-							  <label>
-							    <input type="radio" name="category" value="2"
-							    	{% if recipe.category_id == 2 %}
-							    		checked
-							    	{%endif%}
-							 	>entrees
-							  </label>
-							</div>
-							<div class="radio">
-							  <label>
-							    <input type="radio" name="category" value="3"
-							    	{% if recipe.category_id == 3 %}
-							    		checked
-							    	{%endif%}
-							 	>sides
-							  </label>
-							</div>
-							<div class="radio">
-							  <label>
-							    <input type="radio" name="category" value="4"
-							    	{% if recipe.category_id == 4 %}
-							    		checked
-							    	{%endif%}
-							    >snacks
-							  </label>
-							</div>
-							<div class="radio">
-							  <label>
-							    <input type="radio" name="category" value="5"
-							    	{% if recipe.category_id == 5 %}
-							    		checked
-							    	{%endif%}
-							    >beverages
-							  </label>
-							</div>
-							<div class="radio">
-							  <label>
-							    <input type="radio" name="category" value="6"
-							    	{% if recipe.category_id == 6 %}
-							    		checked
-							    	{%endif%}
-							    >sweets
-							  </label>
-							</div>
+							<label for="category">Category</label>
+	            <select class="form-control" name="category" id="category">
+	                {% for category in categories %}
+	                <option{% if category.id == recipe.category_id %} selected{% endif %}>{{ category.name }}</option>
+	                {% endfor %}
+	            </select>
 
 							<button type="submit" class="btn btn-default" id="submit" type="submit">
 							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save</button>
