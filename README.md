@@ -2,7 +2,7 @@
 
 This project is a simple web application that provides a list of recipes within several categories. It uses third party authentication, and logged in users can add, edit, and delete their own recipes. Project is built using Python, Flask, SQL Alchemy, and Twitter Bootstrap.
 
-Initial [Vagrant](https://www.vagrantup.com/) config cloned from [this repo](https://github.com/udacity/fullstack-nanodegree-vm)
+Initial [Vagrant](https://www.vagrantup.com/) config cloned from [this repo](https://github.com/udacity/fullstack-nanodegree-vm).
 
 ### Basic features
 
@@ -10,11 +10,7 @@ Initial [Vagrant](https://www.vagrantup.com/) config cloned from [this repo](htt
 * Authenticated users can add, edit, and delete their own recipes.
 * All recipes are publicly visible. The home page shows list of categories
 * Third party authentication using Google account sign-in.
-* JSON endpoints: 
-** list of categories
-** list of all recipes
-** recipes in one category
-** single recipe
+* JSON endpoints: list of categories, list of all recipes, recipes in one category, single recipe
 
 ### Additional features
 * View user profile: logged in users can see their own list of items
