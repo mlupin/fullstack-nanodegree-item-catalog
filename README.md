@@ -2,7 +2,7 @@
 
 This project is a simple web application that provides a list of recipes within several categories. It uses third party authentication, and logged in users can add, edit, and delete their own recipes. Project is built using Python, Flask, SQL Alchemy, and Twitter Bootstrap.
 
-Initial (Vagrant) config cloned from (https://github.com/udacity/fullstack-nanodegree-vm)
+Initial [Vagrant](https://www.vagrantup.com/) config cloned from [this repo](https://github.com/udacity/fullstack-nanodegree-vm)
 
 ### Basic features
 
@@ -32,7 +32,7 @@ Initial (Vagrant) config cloned from (https://github.com/udacity/fullstack-nanod
 
 ### Requirements
 
-This project includes a Vagrant virtual environment. To use it, install VirtualBox and (Vagrant), and follow the project installation steps bellow.
+This project includes a [Vagrant](https://www.vagrantup.com/) virtual environment and [VirtualBox](https://www.virtualbox.org/). To use it, install VirtualBox and (Vagrant), and follow the project installation steps bellow.
 
 ### Installation
 
@@ -55,10 +55,10 @@ vagrant@vagrant-ubuntu-trusty-32:/vagrant$ python project.py
 3. Configure Google Sign-in
 A client ID is not provided. Use your own client ID to test the application.
 
-Create a Google Developers Console project. Then go to the credentials tab and download the client ID as a JSON file. Copy the file to the project folder and rename it client_secrets.json.
+Create a [Google Developers Console](console.developers.google.com) project. Then go to the credentials tab and download the client ID as a JSON file. Copy the file to the project folder and rename it client_secrets.json.
 
 4. Point your browser to 'localhost:5000' to run the application.
 
 ### Recognition
 * Family: Many of sample recipes are family recipes.
-* (Pixabay)[https://pixabay.com/en/]: All sample images were downloaded from Pixabay, All images and videos on Pixabay are released free of copyrights under Creative Commons CC0.
+* [Pixabay](https://pixabay.com/en/): All sample images were downloaded from Pixabay, All images and videos on Pixabay are released free of copyrights under Creative Commons CC0.
