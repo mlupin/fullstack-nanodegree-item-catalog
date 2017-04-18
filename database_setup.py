@@ -418,10 +418,12 @@ def addUsers():
         session.add(user)
     session.commit()
 
+
 def addCategories():
     for category in categories:
         session.add(category)
     session.commit()
+
 
 def addRecipes():
     for recipe in recipes:

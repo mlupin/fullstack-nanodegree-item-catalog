@@ -1,4 +1,5 @@
-from sqlalchemy import Column, ForeignKey, Integer, String, DateTime, Text, LargeBinary
+from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import DateTime, Text, LargeBinary
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.sql import func
 from sqlalchemy.ext.declarative import declarative_base
@@ -40,7 +41,6 @@ class Recipe(Base):
     name = Column(String(80), nullable=False)
     id = Column(Integer, primary_key=True)
     description = Column(String(250))
-    # image_url = Column(String(250), default="placehold.it/300x200")
     picture = Column(Text, nullable=True)
     picture_data = Column(LargeBinary, nullable=True)
     servings = Column(String())
@@ -64,8 +64,7 @@ class Recipe(Base):
             'ingredients': self.ingredients,
             'instructions': self.instructions,
             'id': self.id,
-            'picture': self.picture,
-            # 'picture_data': self.picture_data
+            'picture': self.picture
         }
 
 

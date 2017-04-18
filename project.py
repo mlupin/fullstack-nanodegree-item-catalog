@@ -272,7 +272,7 @@ def showRecipe(recipe_id):
 
 @app.route('/recipes/<int:recipe_id>/picture/')
 def recipePicture(recipe_id):
-    """"""
+    """ Show recipe picture """
     recipe = session.query(Recipe).get(recipe_id)
 
     file_extension = recipe.picture.rsplit('.', 1)[1].lower()
@@ -313,14 +313,14 @@ def createRecipe():
         servings = request.form['servings'].strip()
         ingredients = request.form['ingredients']
         instructions = request.form['instructions']
-        
         picture = request.files['picture']
         picture_data = None
 
         if picture:
             if not allowed_file(picture.filename):
                 flash("The picture must be a JPEG or PNG file.")
-                return render_template('createRecipe.html', categories=categories)
+                return render_template('createRecipe.html',
+                                       categories=categories)
 
             picture_data = picture.read()
 
@@ -381,7 +381,8 @@ def editRecipe(recipe_id):
                                    categories=categories,
                                    recipe=recipeToEdit)
 
-        removeExistingPicture = request.form['removeExistingPicture'].strip().lower()
+        removeExistingPicture = request.form['removeExistingPicture']
+        removeExistingPicture = removeExistingPicture.strip().lower()
 
         if removeExistingPicture == "true":
             recipeToEdit.picture = None
@@ -393,7 +394,9 @@ def editRecipe(recipe_id):
         if picture:
             if not allowed_file(picture.filename):
                 flash("The picture must be a JPEG or PNG file.")
-                return render_template('editRecipe.html', categories=categories, recipe=recipeToEdit)
+                return render_template('editRecipe.html',
+                                       categories=categories,
+                                       recipe=recipeToEdit)
 
             picture_data = picture.read()
             print "Content-Length: %s" % picture.content_length
@@ -401,7 +404,6 @@ def editRecipe(recipe_id):
         if picture_data:
             recipeToEdit.picture = picture.filename
             recipeToEdit.picture_data = picture_data
-
 
         description = request.form['description'].strip()
         servings = request.form['servings'].strip()
@@ -423,7 +425,6 @@ def editRecipe(recipe_id):
         return render_template('editRecipe.html',
                                recipe=recipeToEdit,
                                categories=categories)
-
 
 
 @app.route('/recipes/<int:recipe_id>/delete/', methods=['GET', 'POST'])
