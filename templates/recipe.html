@@ -43,8 +43,15 @@
 			<pre><p>{{recipe.instructions}}</p></pre>
 		</div>
 
-		<div class="col-md-5">
+		<!-- <div class="col-md-5">
 			<img src="{{recipe.picture}}">
-		</div>
+		</div> -->
+
+		{% if recipe.picture %}
+		    <div class="col-md-5">
+		        <img src="{{ url_for('recipePicture', recipe_id=recipe.id) }}" class="img-responsive" alt="{{ recipe.picture }}"/>
+		    </div>
+		{% endif %}
+
 	</div>
 {% endblock %}

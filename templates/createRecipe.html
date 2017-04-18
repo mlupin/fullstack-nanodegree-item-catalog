@@ -24,7 +24,7 @@
 		
 		<div class="row">
 			<div class="col-xs-12">
-				<form action="#" method = "post">
+				<form action="#" method = "post" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="name">Name:</label>
 						<input type ="text" maxlength="50" class="form-control" name="name" placeholder="Name of the recipe">
@@ -43,12 +43,27 @@
 						<textarea class="form-control" rows="3" name="instructions" placeholder="1. Intructions for the recipe"></textarea>
 
 						<label for="category">Category</label>
-            <select class="form-control" name="category" id="category">
-                {% for category in categories %}
-                <option>{{ category.name }}</option>
-                {% endfor %}
-            </select>
-            
+			            
+			            <select class="form-control" name="category" id="category">
+			                {% for category in categories %}
+			                <option>{{category.name}}</option>
+			                {% endfor %}
+			            </select>
+
+			            <div class="fileinput fileinput-new" data-provides="fileinput">
+			            	<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 150px; height: 150px;">
+			            	</div>
+			            	
+			            	<div>
+			                <span class="btn btn-default btn-file">
+			                    <span class="fileinput-new">Select image</span>
+			                    <span class="fileinput-exists">Change</span>
+			                    <input type="file" name="picture" id="picture">
+			            	</span>
+			            	<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+			            </div>
+			        </div>
+
 						<button type="submit" class="btn btn-default" id="submit" type="submit">
 						<span class="glyphicon glyphicon-glass" aria-hidden="true"></span>Create</button>
 					</div>

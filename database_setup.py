@@ -15,12 +15,12 @@ session = dbSession()
 # Create dummy user
 user1 = User(name="Marina Lupin",
              email="lupinmarina@gmail.com",
-             picture='https://pbs.twimg.com/profile_pictures/2671170543'
+             picture='https://pbs.twimg.com/profile_imageURLs/2671170543'
                    '/18debd694829ed78203a5a36dd364160_400x400.jpg')
 
 user2 = User(name="Archer",
              email="archer@example.com",
-             picture='https://pbs.twimg.com/profile_pictures/2671170543'
+             picture='https://pbs.twimg.com/profile_imageURLs/2671170543'
                    '/18debd694829ed78203a5a36dd364160_400x400.jpg')
 
 users = [user1, user2]
@@ -46,7 +46,6 @@ recipe1 = Recipe(user_id=1,
                  name="Chia Seed Pudding",
                  description="Pudding made with almond milk, chia seeds, cardamom, and blueberries. "
                              "Healthy and filling breakfast to start your day with plenty of fiber.",
-                 picture="/static/images/chia-seed-pudding-small.jpg",
                  servings=4,
                  ingredients="- 2 cups almond milk (homemade or natural)\n"
                              "- 1/2 cup Chia Seeds\n"
@@ -62,7 +61,6 @@ recipe1 = Recipe(user_id=1,
 recipe2 = Recipe(user_id=1,
                  name="Oatmeal",
                  description="Easy oatmeal that is great for those in a hurry.",
-                 picture="/static/images/oats-small.jpg",
                  servings=1,
                  ingredients="- 1 cup almond milk (homemade or natural)\n"
                              "- 3 Tbsp oats\n"
@@ -79,7 +77,6 @@ recipe2 = Recipe(user_id=1,
 recipe3 = Recipe(user_id=1,
                  name="Berry Acai Bowl",
                  description="Easy oatmeal that is great for those in a hurry.",
-                 picture="/static/images/acai-bowl-small.jpg",
                  servings=1,
                  ingredients="Smoothie:\n"
                              "- 2/3 cup fresh or frozen blueberries or blackberries\n"
@@ -100,7 +97,6 @@ recipe3 = Recipe(user_id=1,
 recipe4 = Recipe(user_id=1,
                  name="Stuffed Bell Peppers",
                  description="Favorite Russian family recipe.",
-                 picture="/static/images/stuffed-bell-peppers-small.jpg",
                  servings=6,
                  ingredients="Stuffing:\n"
                              "- 1 lb (500 g) ground meat (lamb, beef, pork or their mixture, coarse-ground is better than fine-ground)\n"
@@ -135,7 +131,6 @@ recipe4 = Recipe(user_id=1,
 recipe5 = Recipe(user_id=1,
                  name="Thai Salad",
                  description="Thai-inspired carrot and cucumber salad with a savory-sweet dressing and cashews.",
-                 picture="/static/images/thai-salad-small.jpg",
                  servings=4,
                  ingredients="Dressing:\n"
                              "- 2 cloves garlix, minced\n"
@@ -165,7 +160,6 @@ recipe5 = Recipe(user_id=1,
 recipe6 = Recipe(user_id=1,
                  name="Miso Soup",
                  description="Simple vegan miso soup with mushrooms and tofu.",
-                 picture="/static/images/miso-small.jpg",
                  servings=3,
                  ingredients="- 40 g soba noodles\n"
                              "- 3 Tbsp miso paste\n"
@@ -184,10 +178,9 @@ recipe6 = Recipe(user_id=1,
 
 
 # Sides
-recipe7 = Recipe(user_id=2,
+recipe7 = Recipe(user_id=1,
                  name="Roasted Brussel Sprouts",
                  description="Roasted brussel sprouts cut in half and coated in balsamic vinegar.",
-                 picture="/static/images/brussels-sprouts-small.jpg",
                  servings=6,
                  ingredients="- 1 1/2 pounds Brussels sprouts, ends trimmed and yellow leaves removed\n"
                              "- 2-3 Tbsp olive oil\n"
@@ -201,11 +194,10 @@ recipe7 = Recipe(user_id=2,
                               "5. Serve hot and enjoy!",
                  category=category3)
 
-recipe8 = Recipe(user_id=2,
+recipe8 = Recipe(user_id=1,
                  name="Sweet Potato Fries",
                  description="Healthy option to replace your favorite french fries. "
                              "Great side to serve with fish, veggies, or have as a snack.",
-                 picture="/static/images/fries-small.jpg",
                  servings=6,
                  ingredients="- 1 medium size sweet potato\n"
                              "- 2-3 Tbsp olive oil\n"
@@ -222,10 +214,9 @@ recipe8 = Recipe(user_id=2,
                               "7. Serve hot with your favorite dipping sauce or as a side.",
                  category=category3)
 
-recipe9 = Recipe(user_id=2,
+recipe9 = Recipe(user_id=1,
                  name="Hummus",
                  description="Roasted brussel sprouts cut in half and coated in balsamic vinegar.",
-                 picture="/static/images/hummus-small.jpg",
                  servings=8,
                  ingredients="- 1 15-ounce can chickpeas, NOT drained (option to cook chickpeas)\n"
                              "- 2-4 cloves garlic\n"
@@ -239,11 +230,10 @@ recipe9 = Recipe(user_id=2,
                  category=category3)
 
 # Snacks
-recipe10 = Recipe(user_id=2,
+recipe10 = Recipe(user_id=1,
                  name="Hummus Avocado Toast",
                  description="Simple vegan hummus-avocado toast perfect for breakfast or lunch or a snack. "
                              "Multigrain toast topped with heart-healthy fats and plant proteins.",
-                 picture="/static/images/toast-small.jpg",
                  servings=1,
                  ingredients="- 2 slices sprouted grain bread, toasted\n"
                              "- 2 tbsp hummus\n"
@@ -259,10 +249,9 @@ recipe10 = Recipe(user_id=2,
                               "4. Option to spread the toast with hummus and top with avocado.",
                  category=category4)
 
-recipe11 = Recipe(user_id=2,
+recipe11 = Recipe(user_id=1,
                  name="Muesli Bar",
                  description="Healthy, no bake granola bars with a sweet and crunchy texture.",
-                 picture="/static/images/muesli-bar-small.jpg",
                  servings=12,
                  ingredients="- 220 g medjool dates, pitted\n"
                              "- 1/4 cup maple syrup, agave nectar, or honey if not vegan\n"
@@ -282,10 +271,9 @@ recipe11 = Recipe(user_id=2,
                               "8. Remove bars and chop into 12 even bars. Store in an airtight container.",
                  category=category4)
 
-recipe12 = Recipe(user_id=2,
+recipe12 = Recipe(user_id=1,
                  name="Juice Pulp Muffins",
                  description="Time to reuse your juicer pulp and enjoy there incredibly moist and high in fiber muffins. Perfect as a to-go snacks!",
-                 picture="/static/images/muffins-small.jpg",
                  servings=24,
                  ingredients="- 1 banana, mashed\n"
                              "- 2 cups veggie or fruit pulp\n"
@@ -311,7 +299,6 @@ recipe13 = Recipe(user_id=1,
                  name="Gingerbread",
                  description="This is my mum's recipe and she often made this gingerbread for Christmas. "
                              "Classic gingerbread with fresh ginger, apples, and brown sugar. Perfect dessert to share with loved ones during fall holidays.",
-                 picture="/static/images/gingerbread-small.jpg",
                  servings=15,
                  ingredients="- 2/3 cup (160 g) whole milk\n"
                             "- 3/4 cup (160 g) dark brown sugar\n"
@@ -336,7 +323,6 @@ recipe13 = Recipe(user_id=1,
 recipe14 = Recipe(user_id=1,
                  name="Clafoutis",
                  description="A traditional French dessert. This clafoutis is moderately sweet despite very sweet cherries and sweetened coconut.",
-                 picture="/static/images/clafoutis-small.jpg",
                  servings=15,
                  ingredients="- 1/2 cup (120 g) whole milk\n"
                              "- 1/2 cup (120 g) heavy cream\n"
@@ -360,7 +346,6 @@ recipe14 = Recipe(user_id=1,
 recipe15 = Recipe(user_id=1,
                  name="Chocolate Chip Cookies",
                  description="Play on traditional chocolate chip cookies but with almond meal. Crispy on the outside, chewy on the inside!",
-                 picture="/static/images/cookies-small.jpg",
                  servings=12,
                  ingredients="- 1 1/4 cups almond meal\n"
                              "- 1/4 cup dark chocolate chips or bar, loosely chopped\n"
@@ -382,10 +367,9 @@ recipe15 = Recipe(user_id=1,
                  )
 
 # Beverages
-recipe16 = Recipe(user_id=2,
+recipe16 = Recipe(user_id=1,
                  name="Chocolate Banana Smoothie",
                  description="Power charge your day with this velvety smooth smoothie.",
-                 picture="/static/images/chocolate-smoothie-small.jpg",
                  servings=1,
                  ingredients="- 1 banana\n"
                              "- 1 Tbsp cocoa powder\n"
@@ -397,7 +381,6 @@ recipe16 = Recipe(user_id=2,
 recipe17 = Recipe(user_id=1,
                  name="Matcha Latte",
                  description="Enjoy this creamy matcha tea drink for an antioxidant and energy boost.",
-                 picture="/static/images/matcha-small.jpg",
                  servings=1,
                  ingredients="- 3/4 cup almond milk (homemade or natural)\n"
                              "- 1/4 cup boiling water\n"
@@ -412,7 +395,6 @@ recipe17 = Recipe(user_id=1,
 recipe18 = Recipe(user_id=1,
                  name="Beet and Carrot Juice",
                  description="Enjoy this creamy matcha tea drink for an antioxidant and energy boost.",
-                 picture="/static/images/juice-small.jpg",
                  servings=1,
                  ingredients="- 1 medium beet, peeled and chopped\n"
                              "- 2 carrots, peeled and chopped\n"

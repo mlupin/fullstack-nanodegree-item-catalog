@@ -28,13 +28,13 @@
 					</div>
 
 					<div class="col-xs-4">
-						{% if recipe.picture != "" %}	
-							<a href="{{url_for('showRecipe', recipe_id=recipe.id)}}">
-							  <img src="{{recipe.picture}}">
-						  </a>
+						{% if recipe.picture %}
+						    <a href="{{url_for('showRecipe', recipe_id=recipe.id)}}">
+						    	<img src="{{ url_for('recipePicture', recipe_id=recipe.id) }}" class="img-responsive" alt="{{ recipe.picture }}"/>
+						    </a>
 						{% else %}
-						  <img src="placehold.it/300x200">
-						{% endif%}
+						 	<img src="placehold.it/300x200">
+						{% endif %}
 					</div>
 
 					<div class="col-xs-8">

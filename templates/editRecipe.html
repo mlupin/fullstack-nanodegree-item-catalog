@@ -25,8 +25,8 @@
 
 			<div class="row">
 				<div class="col-md-12">
-					<form action="#" method = "post">
-						<div class="form-group">
+					<form action="#" method = "post" enctype="multipart/form-data">
+						<div class="form-group" >
 							<label for="name">Name:</label>
 							<input type ="text" maxlength="100" class="form-control" name="name" value="{{recipe.name }}">
 
@@ -43,21 +43,66 @@
 							<textarea class="form-control" rows="3" name="instructions">{{recipe.instructions}}</textarea>
 							
 							<label for="category">Category</label>
-	            <select class="form-control" name="category" id="category">
-	                {% for category in categories %}
-	                <option{% if category.id == recipe.category_id %} selected{% endif %}>{{ category.name }}</option>
-	                {% endfor %}
-	            </select>
+				            
+				            <select class="form-control" name="category" id="category">
+				                {% for category in categories %}
+				                <option{% if category.id == recipe.category_id %} selected{% endif %}>{{ category.name }}</option>
+				                {% endfor %}
+				            </select>
+
+				            <label for="picture">Image</label>
+	             			<div class="fileinput fileinput-new" data-provides="fileinput"">
+            					<div class="fileinput-new thumbnail" style="width: 150px; height: 150px;" id="thumbnailContainer">
+					                {% if recipe.picture %}
+					                <img src="{{ url_for('recipePicture', recipe_id=recipe.id) }}" alt="{{ recipe.picture }}" />
+					                {% endif %}
+            					</div>
+					            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+					            <div>
+				                <span class="btn btn-default btn-file">
+				                	<span class="fileinput-new">Select image</span>
+				                	<span class="fileinput-exists">Change</span>
+				                	<input type="file" name="picture"></span>
+				                	
+				                	<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+					                {% if recipe.picture %}
+					                	<a href="#" class="btn btn-default" id="btnRemoveExistingPicture">Remove</a>
+					                {% endif %}
+					            </div>
+					        </div>
+
+					        <input type="hidden" name="removeExistingPicture" id="removeExistingPicture" value="false" />
+
 
 							<button type="submit" class="btn btn-default" id="submit" type="submit">
-							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save</button>
+								<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save
+							</button>
 						</div>
 					</form>
 
 					<a href = '{{url_for('showAllRecipes')}}'>
 						<button class="btn btn-default delete">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel
+						</button>
 					</a>
+
+					{% if recipe.picture %}
+					    <script type="text/javascript">
+					        var removeExistingPicture = function() {
+					            $("#thumbnailContainer").empty();
+					            $("#removeExistingPicture").val("true");
+					            $("#btnRemoveExistingPicture").remove();
+					        };
+					        $("#btnRemoveExistingPicture").click(function () {
+					            removeExistingPicture();
+					        });
+					        var fileinput = $('.fileinput').fileinput();
+					        fileinput.on('change.bs.fileinput', function(e, files){
+					            removeExistingPicture();
+					        });
+					    </script>
+
+					{% endif %}
 				</div>
 			</div>
 		{% endif %}
