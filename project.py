@@ -41,6 +41,7 @@ session = DBSession()
 
 
 def login_required(f):
+    """ Decorator used to determine if user is signed in or not """
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if 'username' in login_session:
@@ -85,7 +86,6 @@ def showLogin():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
                     for x in xrange(32))
     login_session['state'] = state
-    # return "The current session state is %s" % login_session['state']
     return render_template('login.html', STATE=state)
 
 
@@ -175,10 +175,10 @@ def gconnect():
     output += '!</h1>'
     output += '<img src="'
     output += login_session['picture']
-    output += ' " style = "width: 300px; height: 300px;'
+    output += ' " style = "width: 100px; height: 100px;'
     output += 'border-radius: 150px;'
-    output += '-webkit-border-radius: 150px;'
-    output += '-moz-border-radius: 150px;"> '
+    output += '-webkit-border-radius: 50px;'
+    output += '-moz-border-radius: 50px;"> '
     flash("you are now logged in as %s" % login_session['username'])
     print "done!"
     return output
@@ -288,16 +288,18 @@ def recipePicture(recipe_id):
 
 
 @app.route('/recipe/new/', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def createRecipe():
     """ Create a new recipe """
     categories = session.query(Category).all()
     if request.method == 'POST':
+        # check if user entered a name
         name = request.form['name'].strip()
         if not name:
-            flash("Please enter a name.", "danger")
+            flash("Please enter a name")
             return render_template('createRecipe.html', categories=categories)
 
+        # check if user entered a category
         category_name = request.form['category'].strip()
         if not category_name:
             flash("Please choose a category")
@@ -309,6 +311,7 @@ def createRecipe():
             flash("Please choose a valid category.")
             return render_template('createRecipe.html', categories=categories)
 
+        # request inputs from a from in createRecipe.html
         description = request.form['description'].strip()
         servings = request.form['servings'].strip()
         ingredients = request.form['ingredients']
@@ -316,29 +319,31 @@ def createRecipe():
         picture = request.files['picture']
         picture_data = None
 
+        # check if user selected a picture
         if picture:
             if not allowed_file(picture.filename):
                 flash("The picture must be a JPEG or PNG file.")
                 return render_template('createRecipe.html',
                                        categories=categories)
 
+            # the entire contents of the file will be read and returned
             picture_data = picture.read()
 
+        # create new recipe with author as the signed in user
         recipeToCreate = Recipe(name=name,
                                 description=description,
                                 servings=servings,
                                 ingredients=ingredients,
                                 instructions=instructions,
                                 category=category,
-                                # image_url=filename,
                                 user_id=login_session['user_id']
-                                # creation_date=datetime.utcnow()
                                 )
-
+        # if user selected an image, store contents and save file name
         if picture_data:
             recipeToCreate.picture = picture.filename
             recipeToCreate.picture_data = picture_data
 
+        # add new recipe to database and commit
         session.add(recipeToCreate)
         session.commit()
         flash('New Recipe %s Successfully Created' % (recipeToCreate.name))
@@ -431,7 +436,12 @@ def editRecipe(recipe_id):
 @login_required
 def deleteRecipe(recipe_id):
     """ Delete a recipe if the signed in user is the author of the recipe """
+
+    # query recipe to delete by recipe id
     recipeToDelete = session.query(Recipe).filter_by(id=recipe_id).one()
+
+    # check if the logged in user is the author of the recipe
+    # if user is not the author the flash an error message
     if recipeToDelete.user_id != login_session['user_id']:
         flash('You are not authorized to delete %s recipe'
               % recipeToDelete.name)

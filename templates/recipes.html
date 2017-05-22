@@ -1,64 +1,64 @@
 {% extends "main.html" %}
 {% block content %}
 
-	<div class="row flash">
-		<div class="col-xs-12">		
-	    {% with messages = get_flashed_messages() %}
-	  		{% if messages %}
-		   		<ul>
-		    		{% for message in messages %}
-		        	<li> <strong> {{ message }} </strong> </li>
-		    		{% endfor %}
-		    	</ul>
-	    	{% endif %}
-			{% endwith %}
-		</div>
-	</div>
+  <div class="row flash">
+    <div class="col-xs-12">   
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul>
+            {% for message in messages %}
+              <li> <strong> {{ message }} </strong> </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+    </div>
+  </div>
 
-	
-	{% if recipes !=[] %}	
-		<div class="row">
-			{% for recipe in recipes %}
+  
+  {% if recipes !=[] %} 
+    <div class="row">
+      {% for recipe in recipes %}
 
-				<div class="recipe">
-					<div class="col-xs-12">
-						<a href="{{url_for('showRecipe', recipe_id=recipe.id)}}">
-							<h4 class="recipe-name">{{recipe.name}}</h4>
-						</a>
-					</div>
+        <div class="recipe">
+          <div class="col-xs-12">
+            <a href="{{url_for('showRecipe', recipe_id=recipe.id)}}">
+              <h4 class="recipe-name">{{recipe.name}}</h4>
+            </a>
+          </div>
 
-					<div class="col-xs-4">
-						{% if recipe.picture %}
-						    <a href="{{url_for('showRecipe', recipe_id=recipe.id)}}">
-						    	<img src="{{ url_for('recipePicture', recipe_id=recipe.id) }}" class="img-responsive" alt="{{ recipe.picture }}"/>
-						    </a>
-						{% else %}
-						 	<img src="placehold.it/300x200">
-						{% endif %}
-					</div>
+          <div class="col-xs-4">
+            {% if recipe.picture %}
+                <a href="{{url_for('showRecipe', recipe_id=recipe.id)}}">
+                  <img src="{{ url_for('recipePicture', recipe_id=recipe.id) }}" class="img-responsive" alt="{{ recipe.picture }}"/>
+                </a>
+            {% else %}
+              <img src="placehold.it/300x200">
+            {% endif %}
+          </div>
 
-					<div class="col-xs-8">
-						<p>{{recipe.description}}</p>
-					
-						<h6>Category: 
-							<a href="{{url_for('showRecipes', category_id=recipe.category_id)}}">
-								{{recipe.category.name}}
-							</a>
-						</h6>
-						
-						<h6>Author: 
-							<a href="{{url_for('showUsersRecipes', user_id=recipe.user_id)}}"">
-								{{recipe.user.name}}
-							</a>
-						</h6>
-							
-						<h6>Servings: {{recipe.servings}}</h6>
-					</div>
-					
-				</div>
+          <div class="col-xs-8">
+            <p>{{recipe.description}}</p>
+          
+            <h6>Category: 
+              <a href="{{url_for('showRecipes', category_id=recipe.category_id)}}">
+                {{recipe.category.name}}
+              </a>
+            </h6>
+            
+            <h6>Author: 
+              <a href="{{url_for('showUsersRecipes', user_id=recipe.user_id)}}"">
+                {{recipe.user.name}}
+              </a>
+            </h6>
+              
+            <h6>Servings: {{recipe.servings}}</h6>
+          </div>
+          
+        </div>
 
-			{% endfor %}
-		</div>
-	{% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
 
 {% endblock %}

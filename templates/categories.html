@@ -20,7 +20,19 @@
 				<div class="col-xs-6 col-sm-4">
 					<a class="category" 
 					   href="{{url_for('showRecipes', category_id = category.id)}}">
-						<img class="image-responsive" src="{{category.picture}}">
+						{% if category.name == 'beverages' %}
+							<img class="image-responsive" src="../static/images/juice.jpg">
+						{% elif category.name == 'breakfast' %}
+							<img class="image-responsive" src="../static/images/oats.jpg">
+						{% elif category.name == 'sides' %}
+							<img class="image-responsive" src="../static/images/brussels-sprouts.jpg">
+						{% elif category.name == 'entrees' %}
+							<img class="image-responsive" src="../static/images/burger.jpg">
+						{% elif category.name == 'snacks' %}
+							<img class="image-responsive" src="../static/images/muesli-bar.jpg">
+						{% elif category.name == 'sweets' %}
+							<img class="image-responsive" src="../static/images/cookies.jpg">
+						{% endif %}
 						<h4 class="category-name">{{category.name}}</h4>
 					</a>
 				</div>
